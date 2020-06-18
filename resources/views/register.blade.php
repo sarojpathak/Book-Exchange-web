@@ -21,10 +21,20 @@
       <form action="{{route('postRegister')}}" method="POST" encType="form-data">
       @csrf
         <div class="control-group">
+                @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
           <div class="form-group floating-label-form-group controls">
             <label>Full Name:</label>
-            <input type="text" name="name" placeholder="Full Name" class="form-control text-center" required>
+            <input type="text" name="name" placeholder="Full Name" class="form-control text-center">
           </div>
+  
         </div>
         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
