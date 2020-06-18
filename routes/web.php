@@ -24,4 +24,4 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/users/register','userController@getregisteruser')->name('getregister');
-Route::post('/users/register'.'userController@registerUser')->name('postRegister');
+Route::post('/users/register','userController@registerUser')->name('postRegister');

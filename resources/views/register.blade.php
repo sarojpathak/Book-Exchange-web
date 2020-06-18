@@ -19,39 +19,47 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <form action="{{route('postRegister')}}" method="POST" encType="form-data">
+      @csrf
         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Full Name:</label>
-            <input type="text" name="name" placeholder="Name" class="form-control text-center">
+            <input type="text" name="name" placeholder="Full Name" class="form-control text-center" required>
           </div>
         </div>
         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Email:</label>
-            <input type="email" name="username" placeholder="Email" class="form-control text-center">
+            <input type="email" name="email" placeholder="Email" class="form-control text-center" required>
           </div>
         </div>
-        <div class="control-group">
+         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Password:</label>
-            <input type="password" name="password" placeholder="Password" class="form-control text-center">
+            <input type="password" name="password" placeholder="Password" required class="form-control text-center">
           </div>
         </div>
-            <div class="control-group">
+         <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>confirm Password:</label>
+             <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control text-center" name="password_confirmation " required>
+          </div>
+        </div>
+        
+           <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Phone:</label>
-            <input type="text" name="phone" placeholder="Phone number" class="form-control text-center">
+            <input type="number" name="phone" placeholder="Phone number" class="form-control text-center" required>
           </div>
         </div>
             <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Address:</label>
-            <input type="text" name="address" placeholder="Address" class="form-control text-center">
+            <input type="text" name="address" placeholder="Address" class="form-control text-center" required>
           </div>
         </div>
         
         <div class="form-group my-4 text-center">
-          <button class="btn btn-primary">Register</button>
+          <button type="submit" class="btn btn-primary">Register</button>
         </div>
       </form>
     </div>
