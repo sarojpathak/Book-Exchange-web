@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Node Blog</title>
+    <title>Book Exchange</title>
 
     <!-- Bootstrap core CSS -->
     <link href={{asset("assets/vendor/bootstrap/css/bootstrap.min.css")}} rel="stylesheet">
@@ -19,7 +19,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href={{asset("assets./css/clean-blog.min.css")}} rel="stylesheet">
+    <link href={{asset("assets/css/clean-blog.min.css")}} rel="stylesheet">
 
   </head>
 
@@ -27,7 +27,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="/">Node Blog</a>
+        <a class="navbar-brand" href="/">Book Exchange</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -35,11 +35,11 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
+              <a class="nav-link" href="">Home</a>
             </li>
           
               <li class="nav-item">
-              <a class="nav-link" href="/users/register">Register</a>
+              <a class="nav-link" href="{{route('getregister')}}">Register</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/users/login">Login</a>
@@ -58,7 +58,7 @@
       </div>
     </nav>
 
-   
+   @yield('content')
 
     <!-- Footer -->
     <footer>

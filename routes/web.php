@@ -18,6 +18,10 @@ Route::get('/', function () {
 });
 
 
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('/users/register','userController@getregisteruser')->name('getregister');
+Route::post('/users/register'.'userController@registerUser')->name('postRegister');
