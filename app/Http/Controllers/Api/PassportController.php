@@ -36,6 +36,8 @@ class PassportController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
 //            'c_password' => 'required|same:password',
         ]);
         if ($validator->fails()) {
