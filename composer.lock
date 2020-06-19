@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "content-hash": "4c8147efcbc8c8cb76b487f3418c8b4b",
+
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
