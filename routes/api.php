@@ -28,3 +28,4 @@ Route::group(['middleware' => 'auth:api'], function(){
 });
 
 Route::get('/posts','Api\PostController@index');
+Route::get('/user','Api\UserController@index');
