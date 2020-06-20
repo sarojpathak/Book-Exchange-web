@@ -1,4 +1,4 @@
-@layout('layouts.app')
+@extends('front::layouts.master')
 
 @section('content')
 <!-- Page Header -->
@@ -18,7 +18,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <form action="/users/login" method="POST">
+      <form action="{{route('postlogin')}}" method="POST">
         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Email:</label>
@@ -31,7 +31,7 @@
             <input type="password" name="password" placeholder="Password" class="form-control">
           </div>
         </div>
-        
+
         <div class="form-group my-4 text-center">
           <button class="btn btn-primary" type="submit">Login</button>
         </div>
