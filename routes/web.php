@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('app');
+    return view('front.layouts.master');
 });
 
 
@@ -25,3 +25,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::get('/users/register','userController@getregisteruser')->name('getregister');
 Route::post('/users/register','userController@registerUser')->name('postRegister');
+
+Route::get('users/login','userController@getLogin')->name('getlogin');
+Route::post('users/login','userController@postLogin')->name('postlogin');
