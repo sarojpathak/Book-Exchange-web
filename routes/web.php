@@ -30,5 +30,8 @@ Route::get('/users/login','HomeController@getloginuser')->name('getlogin');
 
 //post route
 Route::post('/users/register','userController@registerUser')->name('postRegister');
-Route::post('users/login','userController@postLogin')->name('postlogin');
+Route::post('/users/login','userController@postLogin')->name('postlogin');
+Route::post('/users/logout','userController@logout')->name('logout');
+    
+
 

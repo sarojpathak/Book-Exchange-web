@@ -35,28 +35,35 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="">Home</a>
-            </li>
-          
-              <li class="nav-item">
-              <a class="nav-link" href="{{route('getregister')}}">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/users/login">Login</a>
-            </li>
-      
+              <a class="nav-link" href="/">Home</a>
+            </li>      
              <li class="nav-item">
               <a class="nav-link" href="/posts/new">New Post</a>
             </li>
-              <li class="nav-item">
-              <a class="nav-link" href="/users/logout">Logout</a>
+
+
+            @if(session()->has('user'))
+          <form action="{{route('logout')}}" method="post">
+            @csrf
+                <li class="nav-item">
+              <button class="nav-link">Logout</button>
+            </li>                
+             </form>
+             @else
+          <li class="nav-item">
+              <a class="nav-link" href="{{route('getregister')}}">Register</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('postlogin')}}">Login</a>
+            </li>
+  @endif
       
            
           </ul>
         </div>
       </div>
     </nav>
+
 
    @yield('content')
 

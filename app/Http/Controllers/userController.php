@@ -13,9 +13,7 @@ use Illuminate\Support\Str;
 class userController extends Controller
 {
 
-    public function getregisteruser(){
-        return view('front.register');
-    }
+
 
     public function registerUser(Request $request){
         $request->validate([
@@ -34,12 +32,13 @@ class userController extends Controller
         $user->address=$request->address;
         $user->api_token = Str::random(60);
 //        $user->user_avatar = $request->name;
+  $request->session()->put('user', $user);
         $user->save();
+                return redirect('/');
+
     }
 
-    public function getLogin(){
-        return view('front.login');
-    }
+
 
     public function postLogin(Request $request){
         $request->validate([
@@ -48,6 +47,8 @@ class userController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
         {
+          $user=Auth::user();
+          $request->session()->put('user', $user);
             return redirect('/');
 
         }
@@ -56,5 +57,9 @@ class userController extends Controller
 
     }
 
-
+public function logout(Request $request){
+    Auth::logout();
+ $request->session()->flush();
+return redirect('/');
+}
 }
