@@ -30,7 +30,6 @@ class userController extends Controller
         $user->password = Hash::make($request->password);
         $user->phone = $request->phone;
         $user->address=$request->address;
-        $user->api_token = Str::random(60);
 //        $user->user_avatar = $request->name;
   $request->session()->put('user', $user);
         $user->save();
