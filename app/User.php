@@ -3,12 +3,13 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends \TCG\Voyager\Models\User
 {
-    use Notifiable;
+    use Notifiable,HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +17,11 @@ class User extends \TCG\Voyager\Models\User
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','address','phone',
+
+        'name', 'email', 'password','phone','address',
+//=======
+//        'name', 'email', 'password','address','phone',
+//>>>>>>> registeruser
     ];
 
     /**

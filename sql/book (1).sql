@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 15, 2020 at 09:36 PM
+-- Generation Time: Jun 18, 2020 at 02:22 PM
 -- Server version: 5.7.30-0ubuntu0.18.04.1
 -- PHP Version: 7.2.31-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -282,7 +282,114 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2016_01_01_000000_create_pages_table', 2),
 (24, '2016_01_01_000000_create_posts_table', 2),
 (25, '2016_02_15_204651_create_categories_table', 2),
-(26, '2017_04_11_000000_alter_post_nullable_fields_table', 2);
+(26, '2017_04_11_000000_alter_post_nullable_fields_table', 2),
+(27, '2016_06_01_000001_create_oauth_auth_codes_table', 3),
+(28, '2016_06_01_000002_create_oauth_access_tokens_table', 3),
+(29, '2016_06_01_000003_create_oauth_refresh_tokens_table', 3),
+(30, '2016_06_01_000004_create_oauth_clients_table', 3),
+(31, '2016_06_01_000005_create_oauth_personal_access_clients_table', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_access_tokens`
+--
+
+CREATE TABLE `oauth_access_tokens` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `oauth_access_tokens`
+--
+
+INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
+('71cbd40fc60339957fe176280964fcb0392bc4c58e4a8300a5b38e68a82bce1b0d6df39b5d49a2e5', 12, 1, 'MyApp', '[]', 0, '2020-06-18 02:41:03', '2020-06-18 02:41:03', '2021-06-18 08:26:03'),
+('b0a672ba3b14e918b5f2000e131dbb84edd3b4883015b4780cc296dbde5e9d2bb8be50018356f3a3', 10, 1, 'MyApp', '[]', 0, '2020-06-18 02:38:45', '2020-06-18 02:38:45', '2021-06-18 08:23:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_auth_codes`
+--
+
+CREATE TABLE `oauth_auth_codes` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_clients`
+--
+
+CREATE TABLE `oauth_clients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `personal_access_client` tinyint(1) NOT NULL,
+  `password_client` tinyint(1) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `oauth_clients`
+--
+
+INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Laravel Personal Access Client', 'hwc1s3quGY2cBGlppIZ0g7CB1xpDf4W9v2RUu2fD', NULL, 'http://localhost', 1, 0, 0, '2020-06-18 02:38:30', '2020-06-18 02:38:30'),
+(2, NULL, 'Laravel Password Grant Client', 'NtgGzVpKwB2eHDT6U1pl58B1JJbuyNR8afRsHL47', 'users', 'http://localhost', 0, 1, 0, '2020-06-18 02:38:30', '2020-06-18 02:38:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_personal_access_clients`
+--
+
+CREATE TABLE `oauth_personal_access_clients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `client_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `oauth_personal_access_clients`
+--
+
+INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES
+(1, 1, '2020-06-18 02:38:30', '2020-06-18 02:38:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_refresh_tokens`
+--
+
+CREATE TABLE `oauth_refresh_tokens` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `access_token_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -597,7 +704,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$dpvqM5fZKfLFfhz0Hpn4puMIz1PfR4V00MiH1y8jOeE8Gba3H9vEi', 'kdRUhFAfQf81cNtP2wAGlLYRY0bqUH4ftL4ktO9CfhaG6WUzhFQiOgdjoC6W', NULL, '2020-06-15 10:06:07', '2020-06-15 10:06:07');
+(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$dpvqM5fZKfLFfhz0Hpn4puMIz1PfR4V00MiH1y8jOeE8Gba3H9vEi', 'kdRUhFAfQf81cNtP2wAGlLYRY0bqUH4ftL4ktO9CfhaG6WUzhFQiOgdjoC6W', NULL, '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
+(2, 2, 'Saroj', 'sarojpathak430@gmail.com', 'users/default.png', NULL, '$2y$10$NHCVVBYCIw5tfltxXyjcdeyP1pw7RAS72.ryotSyhcdmvamYfImLm', NULL, '{\"locale\":\"en\"}', '2020-06-16 23:27:45', '2020-06-16 23:27:45'),
+(3, 2, 'test', 'test@test.com', 'users/default.png', NULL, '$2y$10$vfYPNHmmLpx4NFYqyMdp9uKCo1tG6B2nINfR5UbEEzH79/O2YRbVe', NULL, '{\"locale\":\"en\"}', '2020-06-16 23:35:08', '2020-06-16 23:35:08'),
+(10, 2, 'saroj', 'saroj@saroj.com', 'users/default.png', NULL, '$2y$10$Qu0DOa1gFNzRTP4/uYHS3.tV0JLdmT4P.7W.A.US3eyiE3s.kCXEG', NULL, NULL, '2020-06-18 01:40:25', '2020-06-18 01:40:25'),
+(12, 2, 'saroj', 's@s.com', 'users/default.png', NULL, '$2y$10$HJGvdyzuY21AJqnHXF0QbOix0UuDbNSxHQXxgOJCXqs7j803gIXmu', NULL, NULL, '2020-06-18 02:41:03', '2020-06-18 02:41:03');
 
 -- --------------------------------------------------------
 
@@ -661,6 +772,39 @@ ALTER TABLE `menu_items`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oauth_access_tokens`
+--
+ALTER TABLE `oauth_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_access_tokens_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_auth_codes`
+--
+ALTER TABLE `oauth_auth_codes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_auth_codes_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_clients_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oauth_refresh_tokens`
+--
+ALTER TABLE `oauth_refresh_tokens`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -767,7 +911,17 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+--
+-- AUTO_INCREMENT for table `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pages`
 --
@@ -802,7 +956,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --

@@ -12,27 +12,27 @@ use Illuminate\Support\Str;
 
 class userController extends Controller
 {
- 
+
     public function getregisteruser(){
         return view('front.register');
     }
 
-     public function registerUser(Request $request){
-          $request->validate([
+    public function registerUser(Request $request){
+        $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6'],
             'phone' => ['required','string','min:10'],
             'address'=>['required','string'],
         ]);
-    //    dd('validated');
+        //    dd('validated');
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->phone = $request->phone;
         $user->address=$request->address;
-         $user->api_token = Str::random(60);
+        $user->api_token = Str::random(60);
 //        $user->user_avatar = $request->name;
         $user->save();
     }
@@ -42,19 +42,19 @@ class userController extends Controller
     }
 
     public function postLogin(Request $request){
-           $request->validate([
+        $request->validate([
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
         ]);
-           if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
         {
-             return redirect('/');
-            
+            return redirect('/');
+
         }
-     return Redirect::back()->withErrors(['Invalid Email or password']);
-        
-       
+        return Redirect::back()->withErrors(['Invalid Email or password']);
+
+
     }
-    
+
 
 }

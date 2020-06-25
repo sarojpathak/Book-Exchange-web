@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('login', 'Api\PassportController@login');
+Route::post('register', 'Api\PassportController@register');
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('get-details', 'Api\PassportController@getDetails');
+});
+
+Route::get('/posts','Api\PostController@index');
+Route::get('/user','Api\UserController@index');

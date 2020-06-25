@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front.layouts.master');
-});
+//Route::get('/', function () {
+//    return view('app');
+//});
 
 
 
@@ -23,8 +23,12 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::get('/users/register','userController@getregisteruser')->name('getregister');
-Route::post('/users/register','userController@registerUser')->name('postRegister');
+//get route
+Route::get('/',['as'=>'home','uses'=>'HomeController@index']);
+Route::get('/users/register','HomeController@getregisteruser')->name('getregister');
+Route::get('/users/login','HomeController@getloginuser')->name('getlogin');
 
-Route::get('users/login','userController@getLogin')->name('getlogin');
+//post route
+Route::post('/users/register','userController@registerUser')->name('postRegister');
 Route::post('users/login','userController@postLogin')->name('postlogin');
+
