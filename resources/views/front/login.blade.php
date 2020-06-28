@@ -1,5 +1,9 @@
 @extends('front.layouts.master')
 
+@section('success_msg')
+    Login
+@endsection
+
 @section('content')
     <!-- Page Header -->
     <header class="masthead" style="background-image: url({{asset('assets/img/home-bg.jpg')}})">
@@ -22,7 +26,7 @@
                     @csrf
 
                     @if($errors->any())
-                        <h4 class="alert alert-danger">{{$errors->first()}}</h4>
+                        <div class="alert alert-danger text-center block">{{$errors->first()}}</div>
                     @endif
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
@@ -38,7 +42,7 @@
                     </div>
 
                     <div class="form-group my-4 text-center">
-                        <button class="btn btn-primary" type="submit">Login</button>
+                        <button class="btn btn-primary btn-block" type="submit">Login</button>
                     </div>
                 </form>
             </div>

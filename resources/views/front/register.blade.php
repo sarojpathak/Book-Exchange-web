@@ -25,7 +25,7 @@
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li class="alert alert-danger block text-center">{{ $error }}</li>
             @endforeach
         </ul>
     </div>
@@ -58,7 +58,7 @@
            <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Phone:</label>
-            <input type="number" name="phone" placeholder="Phone number" class="form-control text-center" required>
+            <input type="text" name="phone" placeholder="Phone number" class="form-control text-center" required>
           </div>
         </div>
             <div class="control-group">
@@ -69,7 +69,7 @@
         </div>
         
         <div class="form-group my-4 text-center">
-          <button type="submit" class="btn btn-primary">Register</button>
+          <button type="submit" class="btn btn-primary btn-block">Register</button>
         </div>
       </form>
     </div>
