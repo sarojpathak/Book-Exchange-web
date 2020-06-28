@@ -38,7 +38,7 @@
               <a class="nav-link" href="/">Home</a>
             </li>      
              <li class="nav-item">
-              <a class="nav-link" href="/posts/new">New Post</a>
+             <a class="nav-link" href="{{route('addbook')}}">Add-book</a>
             </li>
 
 
