@@ -8,23 +8,22 @@ use App\User;
 
 class UserRegistrationTest extends TestCase
 {
+    use RefreshDatabase;
     /** @test */
     public function a_user_can_register_into_system()
     {
-        
-        // $response = $this->post('/users');
-        // $response->assertStatus(200);
-
-       $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         $response = $this->post('/users/register',[
-            'name' => 'Victor',
-            'email' => 'Victor@gmail.com',
-            'password' => 'V123456',
-            'phone' => '1234567890',
-            'address'=> 'ktm'
+            'name' => 'Amos xxx',
+            'email' => 'cccc@mailinator.com',
+            'password' => '123456A',
+            'phone' => '98430123654789569240',
+            'address'=> 'Ut dolorem ut',
         ]);
+        $this->assertCount(1,User::all());
+        // $response->assertSuccessful();
 
-        $response->assertOK();
-        $response->assertCount(1,User::all());
+
+
     }
 }
