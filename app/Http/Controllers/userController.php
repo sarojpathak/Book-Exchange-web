@@ -33,6 +33,7 @@ class userController extends Controller
 //        $user->user_avatar = $request->name;
   $request->session()->put('user', $user);
         $user->save();
+        $request->session()->flash('my-alert-success', 'You have been register Successful');
                 return redirect('/');
 
     }
@@ -48,7 +49,8 @@ class userController extends Controller
         {
           $user=Auth::user();
           $request->session()->put('user', $user);
-            return redirect('/');
+          $request->session()->flash('my-alert-success', 'Login Successful');
+          return redirect('/');
 
         }
         return Redirect::back()->withErrors(['Invalid Email or password']);

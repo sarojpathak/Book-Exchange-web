@@ -27,11 +27,13 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/',['as'=>'home','uses'=>'HomeController@index']);
 Route::get('/users/register','HomeController@getregisteruser')->name('getregister');
 Route::get('/users/login','HomeController@getloginuser')->name('getlogin');
+Route::get('/users/addbook','HomeController@getAddBook')->name('addbook');
 
 //post route
 Route::post('/users/register','userController@registerUser')->name('postRegister');
 Route::post('/users/login','userController@postLogin')->name('postlogin');
 Route::post('/users/logout','userController@logout')->name('logout');
+Route::post('users/addbook','BookController@postBook')->name('addbook');
     
 
 

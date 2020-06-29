@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link href={{asset("assets/img/favicon.ico")}} rel="icon" type="image/png" />
     <title>Book Exchange</title>
 
     <!-- Bootstrap core CSS -->
@@ -18,7 +18,10 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles -->
+    <link href={{asset("assets/css/style.css")}} rel="stylesheet">
+
+    <!-- styles for this template -->
     <link href={{asset("assets/css/clean-blog.min.css")}} rel="stylesheet">
 
   </head>
@@ -27,7 +30,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="/">Book Exchange</a>
+        <a class="navbar-brand" href="/">
+        <img class="nav-logo" src={{asset('assets/img/logo.png')}} />
+      </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -36,17 +41,26 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link" href="/">Home</a>
-            </li>      
+            </li>    
+            @if(session()->has('user'))  
              <li class="nav-item">
-              <a class="nav-link" href="/posts/new">New Post</a>
+
+             <a class="nav-link" href="{{route('addbook')}}">Add-book</a>
             </li>
-
-
+            <li class="nav-item">
+              <a class="nav-link" href="/posts/new">Activity</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/posts/new">Profile</a>
+            </li>
+            @endif
+            </ul>
+            <ul class="navbar-nav ml-auto">
             @if(session()->has('user'))
           <form action="{{route('logout')}}" method="post">
             @csrf
                 <li class="nav-item">
-              <button class="nav-link">Logout</button>
+              <button class="nav-link btn-logout">Logout</button>
             </li>                
              </form>
              @else
@@ -63,6 +77,16 @@
         </div>
       </div>
     </nav>
+
+  
+    
+    @foreach (['error', 'warning', 'success'] as $msg)
+      @if(Session::has('my-alert-' . $msg))
+      <div class=" my-alert my-alert-{{$msg}}">
+        <span id="msg" class="my-alert-message">{{ Session::get('my-alert-' . $msg) }}</span>
+      </div>
+      @endif
+    @endforeach
 
 
    @yield('content')
@@ -98,7 +122,7 @@
                 </a>
               </li>
             </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
+            <p class="copyright text-muted">Copyright &copy; Book Exchange 2020</p>
           </div>
         </div>
       </div>
