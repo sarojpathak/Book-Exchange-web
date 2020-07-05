@@ -29,3 +29,10 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 Route::get('/posts','Api\PostController@index');
 Route::get('/user','Api\UserController@index');
+
+
+// book add edit update delete
+
+Route::post('/book/add','Api\BookController@addBook');
+Route::get('/books','Api\BookController@index');
+Route::get('/books/{user_id}','Api\BookController@getBookByUser');

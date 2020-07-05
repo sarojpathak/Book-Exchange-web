@@ -34,7 +34,7 @@ Route::get('/users/book-detail/{id}','HomeController@getBookDetailPage')->name('
 Route::post('/users/register','userController@registerUser')->name('postRegister');
 Route::post('/users/login','userController@postLogin')->name('postlogin');
 Route::post('/users/logout','userController@logout')->name('logout');
-Route::post('users/addbook','BookController@postBook')->name('addbook');
-    
+Route::post('users/addbook','HomeController@postBook')->name('addbook');
+
 
 

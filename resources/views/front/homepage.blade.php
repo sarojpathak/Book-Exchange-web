@@ -17,6 +17,12 @@
         <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary">Read More...</a></div>
       </div>
     </div>
+    <div class="card" style="width: 200; height:200">
+        <img src="{{asset('storage/'.($book->image))}}" class="img" alt="Responsive image">
+  <div class="card-body">
+  <h5 class="card-title">{{$book->name}}</h5>
+    <p class="card-text">{{$book->description}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
   @endforeach  
 </div>
