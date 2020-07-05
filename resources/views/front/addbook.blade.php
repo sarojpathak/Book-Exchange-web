@@ -49,21 +49,21 @@
           </div>
         </div>
          <div class="control-group">
-          <div class="form-group floating-label-form-group controls">
-            <label>Image:</label>
-             <input  placeholder="Book Image" type="file" class="form-control text-center" name="image" required>
-          </div>
+            <div class="form-group floating-label-form-group controls pt-2">
+               <input  placeholder="Book Image" type="file" class="form-control-file text-muted" name="image" required>
+				    </div>
         </div>
       <div class="form-group my-4 text-center">
-   
-    <label for="exampleFormControlSelect1">
-      Condition:
-    </label>
-    <select class="form-control text-center" name="condition">
-      <option value="likenew">New</option>
-      <option value="used">Used</option>
-      <option>3</option>
-    </select>
+      <div class="control-group">
+        <label class="text-muted">Condition of Book</label>
+          <div class="form-group floating-label-form-group controls">
+              <select class="form-control text-center" name="condition" required>
+                <option value="new">New</option>
+                <option value="like new">Like New</option>
+                <option value="old">Old</option>
+              </select>
+          </did>
+      </div>
       </div>
         <div class="form-group my-4 text-center">
           <button type="submit" class="btn btn-primary">Add Book</button>

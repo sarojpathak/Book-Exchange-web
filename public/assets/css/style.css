@@ -1,36 +1,53 @@
-.btn-logout{
-  border: none !important;
-  background-color: inherit !important;
+.btn-logout {
+    border: none !important;
+    background-color: inherit !important;
 }
 
-.btn-logout:hover{
-  background-color: inherit !important;
+.btn-logout:hover {
+    background-color: inherit !important;
 }
 
-.nav-logo{
-  height: 38px;
+.nav-logo {
+    height: 38px;
 }
 
-.my-alert{
-  text-align: center;
-  padding: 10px 0;
+.my-alert {
+    text-align: center;
+    padding: 10px 0;
 }
 
-.my-alert-error{
-  background-color: #f72323f5;
+.my-alert-error {
+    background-color: #f72323f5;
 }
 
-.my-alert-warning{
-  background-color: #ffaf1cf6;
+.my-alert-warning {
+    background-color: #ffaf1cf6;
 }
 
-.my-alert-success{
-  background-color: #04c404e7;
+.my-alert-success {
+    background-color: #04c404e7;
 }
 
-.my-alert-message{
-  color: white;
-  font-weight: bold !important;
-  font-size: 16px !important;
+.my-alert-message {
+    color: white;
+    font-weight: bold !important;
+    font-size: 16px !important;
 }
 
+input[type=file]::-webkit-file-upload-button {
+    visibility: hidden !important;
+    overflow: hidden;
+}
+
+
+input[type=file]::before {
+    content: "Image File";
+    display: inline-block;
+    background-color: #0085a1;   
+    padding: 5px 10px;
+    color: #fff;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+} 
