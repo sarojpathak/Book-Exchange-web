@@ -28,6 +28,7 @@ Route::get('/',['as'=>'home','uses'=>'HomeController@index']);
 Route::get('/users/register','HomeController@getregisteruser')->name('getregister');
 Route::get('/users/login','HomeController@getloginuser')->name('getlogin');
 Route::get('/users/addbook','HomeController@getAddBook')->name('addbook');
+Route::get('/users/book-detail/{id}','HomeController@getBookDetailPage')->name('book-detail');
 
 //post route
 Route::post('/users/register','userController@registerUser')->name('postRegister');

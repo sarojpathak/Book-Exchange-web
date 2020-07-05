@@ -44,8 +44,11 @@ class HomeController extends Controller
          return redirect('/users/login');
     }
 
+    public function getBookDetailPage($id){
+        $book= Book::find($id);
+        return view('front::book_detail',compact('book',$book));
 
-
+    }
 
 
     // book controller
@@ -85,7 +88,4 @@ class HomeController extends Controller
         $book->save();
         return redirect('/');
     }
-
-
-
 }
