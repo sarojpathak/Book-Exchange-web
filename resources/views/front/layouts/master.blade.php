@@ -44,7 +44,8 @@
             </li>    
             @if(session()->has('user'))  
              <li class="nav-item">
-              <a class="nav-link" href="/posts/new">My Books</a>
+
+             <a class="nav-link" href="{{route('addbook')}}">Add-book</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/posts/new">Activity</a>
