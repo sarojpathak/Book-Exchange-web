@@ -20,28 +20,39 @@
 </header>
 
 
-<!-- Book list section -->
 <div class="container">
-    @foreach ($books as $book)
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <img class="img-thumbnail" src={{asset('storage/'.($book->image))}} alt="Book Image" />
-                </div>
-                <div class="col-md-6">
-                    <h3>{{$book->name}}</h3>
-                    <h6 class="text-muted">{{$book->author}}</h6>
-                    <p>{{Str::limit($book->description,50)}}
-                    </p>
-
-                    <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary border-light">Exchange</a>
-
-                </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+            <div class="section-title">
+                <h1>Find book to Exchange</h1>
+                <p>In this section you can find books to exchange</p>
             </div>
         </div>
     </div>
-    @endforeach
+
+    <div class="row">
+        <!-- single product -->
+        @foreach ($books as $book)
+        <div class="col-lg-3 col-md-6 m-2 p-2 border border-primary">
+            <div class="single-product">
+                <img class="img-fluid" style="width: 250px; height: 250" src="{{asset('storage/'.($book->image))}}"
+                    alt="Book Image">
+                <div class="product-details">
+                    <h6>{{$book->name}}</h6>
+                    <div class="price">
+                        <p>{{Str::limit($book->description,40)}}</p>
+                        <h6 class="text-muted text-right">{{$book->author}}</h6>
+                    </div>
+
+                </div>
+            </div>
+            <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary border-light mx-0">Exchange</a>
+        </div>
+        @endforeach
+    </div>
+</div>
+
+
 </div>
 
 @endsection
