@@ -50,6 +50,10 @@ class HomeController extends Controller
 
     }
 
+    public function getProfile(){
+         return view('front::profile');
+    }
+
 
     // book controller
 

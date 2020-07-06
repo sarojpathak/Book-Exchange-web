@@ -51,3 +51,41 @@ input[type=file]::before {
     cursor: pointer;
     -webkit-user-select: none;
 } 
+
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+
+.profile-head h5{
+    color: #333;
+}
+
+.profile-head h6{
+    color: #0062cc;
+}
+
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+}
+
+.profile-tab label{
+    font-weight: 600;
+}
+.profile-tab p{
+    margin-top: 0;
+    margin-bottom: 10%;
+    font-weight: 600;
+    color: #0062cc;
+}
