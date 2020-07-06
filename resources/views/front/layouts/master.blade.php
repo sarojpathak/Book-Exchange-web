@@ -44,14 +44,13 @@
             </li>    
             @if(session()->has('user'))  
              <li class="nav-item">
-
-             <a class="nav-link" href="{{route('addbook')}}">Add-book</a>
+             <a class="nav-link" href="#">My Books</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/posts/new">Activity</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/posts/new">Profile</a>
+              <a class="nav-link" href="{{route('getProfile')}}">Profile</a>
             </li>
             @endif
             </ul>
