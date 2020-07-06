@@ -1,36 +1,91 @@
-.btn-logout{
-  border: none !important;
-  background-color: inherit !important;
+.btn-logout {
+    border: none !important;
+    background-color: inherit !important;
 }
 
-.btn-logout:hover{
-  background-color: inherit !important;
+.btn-logout:hover {
+    background-color: inherit !important;
 }
 
-.nav-logo{
-  height: 38px;
+.nav-logo {
+    height: 38px;
 }
 
-.my-alert{
-  text-align: center;
-  padding: 10px 0;
+.my-alert {
+    text-align: center;
+    padding: 10px 0;
 }
 
-.my-alert-error{
-  background-color: #f72323f5;
+.my-alert-error {
+    background-color: #f72323f5;
 }
 
-.my-alert-warning{
-  background-color: #ffaf1cf6;
+.my-alert-warning {
+    background-color: #ffaf1cf6;
 }
 
-.my-alert-success{
-  background-color: #04c404e7;
+.my-alert-success {
+    background-color: #04c404e7;
 }
 
-.my-alert-message{
-  color: white;
-  font-weight: bold !important;
-  font-size: 16px !important;
+.my-alert-message {
+    color: white;
+    font-weight: bold !important;
+    font-size: 16px !important;
 }
 
+input[type=file]::-webkit-file-upload-button {
+    visibility: hidden !important;
+    overflow: hidden;
+}
+
+
+input[type=file]::before {
+    content: "Image File";
+    display: inline-block;
+    background-color: #0085a1;   
+    padding: 5px 10px;
+    color: #fff;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+} 
+
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 70%;
+    height: 100%;
+}
+
+.profile-head h5{
+    color: #333;
+}
+
+.profile-head h6{
+    color: #0062cc;
+}
+
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+}
+
+.profile-tab label{
+    font-weight: 600;
+}
+.profile-tab p{
+    margin-top: 0;
+    margin-bottom: 10%;
+    font-weight: 600;
+    color: #0062cc;
+}

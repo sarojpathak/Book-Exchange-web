@@ -29,6 +29,7 @@ Route::get('/users/register','HomeController@getregisteruser')->name('getregiste
 Route::get('/users/login','HomeController@getloginuser')->name('getlogin');
 Route::get('/users/addbook','HomeController@getAddBook')->name('addbook');
 Route::get('/users/book-detail/{id}','HomeController@getBookDetailPage')->name('book-detail');
+Route::get('/users/profile','HomeController@getProfile')->name('getProfile');
 
 //post route
 Route::post('/users/register','userController@registerUser')->name('postRegister');

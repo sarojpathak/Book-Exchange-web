@@ -1,9 +1,5 @@
 @extends('front.layouts.master')
 
-@section('success_msg')
-    Login
-@endsection
-
 @section('content')
     <!-- Page Header -->
     <header class="masthead" style="background-image: url({{asset('assets/img/home-bg.jpg')}})">
