@@ -20,76 +20,50 @@ class HomeController extends Controller
     public function __construct(HomeService $homeService)
     {
         $this->homeService = $homeService;
-
     }
 
-    public function index(){
+    public function index()
+    {
         $books = Book::all();
-    //    dd($books);
-        return view('front::homepage',compact('books', $books) )->with('meta-title','Book-Exchange');
+        //    dd($books);
+        return view('front::homepage', compact('books', $books))->with('meta-title', 'Book-Exchange');
     }
 
-    public function getregisteruser(){
-        return view('front::register')->with('meta-title','Register');
+    public function getregisteruser()
+    {
+        return view('front::register')->with('meta-title', 'Register');
     }
 
-    public function getloginuser(){
-        return view('front::login')->with('meta-title','Login');
+    public function getloginuser()
+    {
+        return view('front::login')->with('meta-title', 'Login');
     }
 
-    public function getAddBook(){
-        if(session()->has('user')){
-        return view('front::addbook');
+    public function getAddBook()
+    {
+        if (session()->has('user')) {
+            return view('front::addbook');
         }
-         return redirect('/users/login');
+        return redirect('/users/login');
     }
 
-    public function getBookDetailPage($id){
-        $book= Book::find($id);
-        return view('front::book_detail',compact('book',$book));
-
+    public function getBookDetailPage($id)
+    {
+        $book = Book::find($id);
+        $usersBook = Book::find($id)::where("belongs_to", "=", Auth::user()->id)->get();
+        return view('front::book_detail', compact('book', $book, 'usersBook', $usersBook));
     }
 
-    public function getProfile(){
-         return view('front::profile');
+    public function getProfile($id)
+    {
+        $user = User::find($id);
+        return view('front::profile', compact('user', $user));
     }
 
+    public function getUsersBook($id)
+    {
 
-    // book controller
-
-
-    public function postBook(Request $request){
-        $request->validate([
-            'name'              => [ 'string','required'],
-            'author'=>['string','required'],
-            'description'=>['required','string','max:1000'],
-            'image'     =>  ['required','image','mimes:jpeg,png,jpg,gif|max:2048'],
-            'condition'=>['required' ,'string']
-        ]);
-
-        $book = new Book;
-        // Set user name
-        $book->name = $request->name;
-        $book->author=$request->author;
-        $book->description=$request->description;
-        $book->condition=$request->condition;
-        $user = Auth::user();
-        $book->belongs_to=$user->id;
-
-
-
-        if($request->has('image')) {
-            $file = $request->file('image');
-
-            $destinationPath = storage_path('books'.'/'.date('F').date('Y'));
-//            print_r($destinationPath); exit;
-            $file->move($destinationPath, $file->getClientOriginalName());
-            $book->image = 'books/' .date('F').date('Y').'/'. $file->getClientOriginalName();
-//            print_r($request->image); exit;
-        }
-
-
-        $book->save();
-        return redirect('/');
+        $usersBook = Book::where('belongs_to', $id)->get();
+        return view('front::users_book', compact('usersBook', $usersBook));
     }
 }
