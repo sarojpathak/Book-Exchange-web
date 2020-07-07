@@ -81,11 +81,9 @@ class HomeController extends Controller
         if($request->has('image')) {
             $file = $request->file('image');
 
-            $destinationPath = storage_path('books'.'/'.date('F').date('Y'));
-//            print_r($destinationPath); exit;
-            $file->move($destinationPath, $file->getClientOriginalName());
-            $book->image = 'books/' .date('F').date('Y').'/'. $file->getClientOriginalName();
-//            print_r($request->image); exit;
+            $destinationPath = storage_path('app/public/books'.'/'.date('F').date('Y'));
+            $file->move($destinationPath, time()."-".$file->getClientOriginalName());
+            $book->image = 'books/' .date('F').date('Y').'/'.time()."-". $file->getClientOriginalName();
         }
 
 
