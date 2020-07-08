@@ -20,7 +20,7 @@ class CreateBooksTable extends Migration
             $table->string('description');
             $table->string('image');
             $table->string('condition');
-            $table->integer('belongs_to');  
+            $table->integer('belongs_to');
             $table->timestamps();
         });
     }
