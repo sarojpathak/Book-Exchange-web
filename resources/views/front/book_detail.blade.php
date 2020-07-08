@@ -18,13 +18,13 @@
     <div class="card mb-4">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
-                    <img class="img-thumbnail" src={{asset('storage/'.($book->image))}} alt="Book Image" />
+                <div class="col-md-6 text-center">
+                    <img class="book-image-detail" src={{asset('storage/'.($book->image))}} alt="Book Image" />
                 </div>
                 <div class="col-md-6">
                     <h3>{{$book->name}}</h3>
                     <h6 class="text-muted">{{$book->author}}</h6>
-                    <p>{{Str::limit($book->description,50)}}
+                    <p>{{Str::limit($book->description)}}
                     </p>
                     <h6 class="text-secondary">Condition: <span class="text-info">{{$book->condition}}</span></h6>
                 </div>

@@ -26,8 +26,8 @@
     <div class="card mb-4">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
-                    <img class="img-thumbnail" src={{asset('storage/'.($book->image))}} alt="Book Image" />
+                <div class="col-md-6 text-center">
+                    <img class="book-image-big" src={{asset('storage/'.($book->image))}} alt="Book Image" />
                 </div>
                 <div class="col-md-6">
                     <h3>{{$book->name}}</h3>
@@ -35,7 +35,7 @@
                     <p>{{Str::limit($book->description,50)}}
                     </p>
 
-                    <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary border-light">Exchange</a>
+                    <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary border-light">View Detail</a>
 
                 </div>
             </div>

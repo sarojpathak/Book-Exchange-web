@@ -89,3 +89,13 @@ input[type=file]::before {
     font-weight: 600;
     color: #0062cc;
 }
+
+.book-image-small{
+    height: 100px;
+    width: auto;
+}
+
+.book-image-detail{
+    height: 300px;
+    width: auto;
+}

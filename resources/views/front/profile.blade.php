@@ -20,7 +20,11 @@
     <div class="row">
         <div class="col-md-5">
             <div class="profile-img">
+            @if($user->image == '')
+                <img src="{{asset('assets/img/defaultUser.png')}}" alt="User Image" />
+            @else 
                 <img src="{{asset('/storage'.$user->image)}}" alt="User Image" />
+            @endif
             </div>
         </div>
         <div class="col-md-5">
