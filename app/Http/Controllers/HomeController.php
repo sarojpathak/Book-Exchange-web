@@ -62,8 +62,43 @@ class HomeController extends Controller
 
     public function getUsersBook($id)
     {
-
         $usersBook = Book::where('belongs_to', $id)->get();
         return view('front::users_book', compact('usersBook', $usersBook));
+    }
+
+    // book controller
+
+
+    public function postBook(Request $request){
+        $request->validate([
+            'name'              => [ 'string','required'],
+            'author'=>['string','required'],
+            'description'=>['required','string','max:1000'],
+            'image'     =>  ['required','image','mimes:jpeg,png,jpg,gif|max:2048'],
+            'condition'=>['required' ,'string']
+        ]);
+
+        $book = new Book;
+        // Set user name
+        $book->name = $request->name;
+        $book->author=$request->author;
+        $book->description=$request->description;
+        $book->condition=$request->condition;
+        $user = Auth::user();
+        $book->belongs_to=$user->id;
+
+
+
+        if($request->has('image')) {
+            $file = $request->file('image');
+
+            $destinationPath = storage_path('app/public/books'.'/'.date('F').date('Y'));
+            $file->move($destinationPath, time()."-".$file->getClientOriginalName());
+            $book->image = 'books/' .date('F').date('Y').'/'.time()."-". $file->getClientOriginalName();
+        }
+
+
+        $book->save();
+        return redirect('/');
     }
 }
