@@ -24,18 +24,18 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 //get route
-Route::get('/',['as'=>'home','uses'=>'HomeController@index']);
-Route::get('/users/register','HomeController@getregisteruser')->name('getregister');
-Route::get('/users/login','HomeController@getloginuser')->name('getlogin');
-Route::get('/users/addbook','HomeController@getAddBook')->name('addbook');
-Route::get('/users/book-detail/{id}','HomeController@getBookDetailPage')->name('book-detail');
-Route::get('/users/profile','HomeController@getProfile')->name('getProfile');
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::get('/users/register', 'HomeController@getregisteruser')->name('getregister');
+Route::get('/users/login', 'HomeController@getloginuser')->name('getlogin');
+Route::get('/users/addbook', 'HomeController@getAddBook')->name('addbook');
+Route::get('/users/book-detail/{id}', 'HomeController@getBookDetailPage')->name('book-detail');
+Route::get('/users/profile/{id}', 'HomeController@getProfile')->name('getProfile');
+Route::get('/users/booklist/{id}', 'HomeController@getUsersBook')->name('getUsersBooks');
+
 
 //post route
-Route::post('/users/register','userController@registerUser')->name('postRegister');
-Route::post('/users/login','userController@postLogin')->name('postlogin');
-Route::post('/users/logout','userController@logout')->name('logout');
-Route::post('users/addbook','HomeController@postBook')->name('addbook');
-
-
-
+Route::post('/users/register', 'userController@registerUser')->name('postRegister');
+Route::post('/users/login', 'userController@postLogin')->name('postlogin');
+Route::post('/users/logout', 'userController@logout')->name('logout');
+Route::post('users/addbook', 'BookController@postBook')->name('addbook');
+Route::post('/users/exchangebook', "BookController@postBookExchange")->name('bookexchange');
