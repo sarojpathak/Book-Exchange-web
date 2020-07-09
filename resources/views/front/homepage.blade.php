@@ -20,25 +20,26 @@
 </header>
 
 <div class="container mt-4 p-4">
-    <div class="row">
+    <div class="row d-flex">
         @foreach ($books as $book)
         <div class="col-md-4 mt-4">
-            <div class="card " style="width: 18rem;">
-                <img class="book-image-big center mt-2" src="{{asset($book->image)}}" alt="Book Image">
-                <div class="card-header mt-2">
-                    <h5 class="card-title text-primary text-center">{{$book->name}}</h5>
+            <div class="card shadow py-2">
+            <div class="book-image-container">
+                <img class="book-image-big center mt-2" src={{asset('storage/'.($book->image))}} alt="Book Image" />
                 </div>
-                <div class="card-body p-0">
-                    <p class="card-text">{{Str::limit($book->description,70)}}
-                    </p>
-                    <small class="pull-right">
-                        By: {{$book->author}}
+                <div class="card-body py-2">
+                    <div class="py-2">
+                    <h5 class="text-center">{{$book->name}}</h5>
+                    <small class="pull-right text-muted">
+                        -{{$book->author}}
                     </small>
+                    </div>
+                    <p class=""><small>{{Str::limit($book->description,70)}}</small>
+                    </p> 
                 </div>
 
-                <div class="card-footer text-right">
-
-                    <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary">Exchange</a>
+                <div class="text-center pb-2">
+                    <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary">View Detail</a>
                 </div>
             </div>
 

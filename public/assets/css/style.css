@@ -97,15 +97,22 @@ input[type=file]::before {
 
 
 .book-image-big{
-    height: 150px;
-    width: 150px;
+    height: auto;
+    width: 200px;
+    max-height: 240px;
 
 }
+
+.book-image-container{
+    height: 250px;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+}
+
 .center {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  margin: auto;
 }
 
 .book-image-detail{
