@@ -95,7 +95,15 @@ input[type=file]::before {
     width: auto;
 }
 
+.book-image-big{
+    height: auto;
+    width: 250px;
+    padding: 5px 0;
+
+}
+
 .book-image-detail{
-    height: 300px;
-    width: auto;
+    height: auto;
+    width: 300px;
+    padding: 5px 0;
 }

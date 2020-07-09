@@ -32,7 +32,7 @@
                 <div class="col-md-6">
                     <h3>{{$book->name}}</h3>
                     <h6 class="text-muted">{{$book->author}}</h6>
-                    <p>{{Str::limit($book->description,50)}}
+                    <p>{{Str::limit($book->description,100)}}
                     </p>
 
                     <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary border-light">View Detail</a>
