@@ -10,16 +10,16 @@ class UserLoginTest extends TestCase
 {
     use RefreshDatabase;
     /** @test */
-    public function a_user_can_login()
+    public function register_user_can_login()
     {
-        $this->withoutExceptionHandling();
-        $response = $this->post('/users/login',[
-            'email'=>'cccc@mailinator.com',
-            'password'=>'123456A',
-        ]);
-        // $response->assertOK();
-        $this->assertCount(1,User::('email','password'));
-        
+        $user = factory(User::class)->make();
 
+        $response = $this->post('/users/login', [
+            'email' => $user->email,
+            'password' => 'secret',
+            'password_confirmation' => 'secret',
+        ]);
+
+        $response->assertStatus(302);
     }
 }

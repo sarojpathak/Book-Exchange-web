@@ -43,14 +43,14 @@ input[type=file]::-webkit-file-upload-button {
 input[type=file]::before {
     content: "Image File";
     display: inline-block;
-    background-color: #0085a1;   
+    background-color: #0085a1;
     padding: 5px 10px;
     color: #fff;
     outline: none;
     white-space: nowrap;
     cursor: pointer;
     -webkit-user-select: none;
-} 
+}
 
 .profile-img{
     text-align: center;
@@ -88,4 +88,27 @@ input[type=file]::before {
     margin-bottom: 10%;
     font-weight: 600;
     color: #0062cc;
+}
+
+.book-image-small{
+    height: 100px;
+    width: auto;
+}
+
+
+.book-image-big{
+    height: 150px;
+    width: 150px;
+
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.book-image-detail{
+    height: 300px;
+    width: auto;
 }

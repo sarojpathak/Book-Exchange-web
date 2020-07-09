@@ -19,39 +19,34 @@
     </div>
 </header>
 
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 text-center">
-            <div class="section-title">
-                <h1>Find book to Exchange</h1>
-                <p>In this section you can find books to exchange</p>
-            </div>
-        </div>
-    </div>
-
+<div class="container mt-4 p-4">
     <div class="row">
-        <!-- single product -->
         @foreach ($books as $book)
-        <div class="col-lg-3 col-md-6 m-2 p-2 border border-primary">
-            <div class="single-product">
-                <img class="img-fluid" style="width: 250px; height: 250" src="{{asset('storage/'.($book->image))}}"
-                    alt="Book Image">
-                <div class="product-details">
-                    <h6>{{$book->name}}</h6>
-                    <div class="price">
-                        <p>{{Str::limit($book->description,40)}}</p>
-                        <h6 class="text-muted text-right">{{$book->author}}</h6>
-                    </div>
+        <div class="col-md-4 mt-4">
+            <div class="card " style="width: 18rem;">
+                <img class="book-image-big center mt-2" src="{{asset($book->image)}}" alt="Book Image">
+                <div class="card-header mt-2">
+                    <h5 class="card-title text-primary text-center">{{$book->name}}</h5>
+                </div>
+                <div class="card-body p-0">
+                    <p class="card-text">{{Str::limit($book->description,70)}}
+                    </p>
+                    <small class="pull-right">
+                        By: {{$book->author}}
+                    </small>
+                </div>
 
+                <div class="card-footer text-right">
+
+                    <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary">Exchange</a>
                 </div>
             </div>
-            <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary border-light mx-0">Exchange</a>
+
         </div>
+
+
         @endforeach
     </div>
-</div>
-
 
 </div>
 
