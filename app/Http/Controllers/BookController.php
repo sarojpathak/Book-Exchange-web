@@ -8,14 +8,13 @@ use App\Exchanges;
 use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
 use App\User;
-
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
 
     public function postBook(Request $request)
     {
-        $dir = asset('public');
         $request->validate([
             'name'              => ['string', 'required'],
             'author' => ['string', 'required'],
@@ -30,11 +29,22 @@ class BookController extends Controller
         $book->author = $request->author;
         $book->description = $request->description;
         $book->condition = $request->condition;
-        $user = session('user');
+        $user = Auth::user();
         $book->belongs_to = $user->id;
-        $imageName = time() . '.' . request()->image->getClientOriginalExtension();
-        $book->image = $request->image->move(('books'), $imageName);
+
+
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+
+            $destinationPath = storage_path('app/public/books' . '/' . date('F') . date('Y'));
+            $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
+            $book->image = 'books/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
+        }
+
+
         $book->save();
+        $request->session()->flash('my-alert-success', 'Book Added Sucessfully');
         return redirect('/');
     }
 

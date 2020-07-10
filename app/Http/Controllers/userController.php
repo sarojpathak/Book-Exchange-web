@@ -23,16 +23,18 @@ class userController extends Controller
             'address' => ['required', 'string'],
         ]);
         //    dd('validated');
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        //        $user->user_avatar = $request->name;
+        $newuser = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ]);
+        Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+        $user = Auth::user();
         $request->session()->put('user', $user);
-        $user->save();
-        $request->session()->flash('my-alert-success', 'You have been register Successful');
+        // dd($user);
+        $request->session()->flash('my-alert-success', 'You have been register Successful, please login');
         return redirect('/');
     }
 
@@ -47,6 +49,7 @@ class userController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             $request->session()->put('user', $user);
+            // dd($user);
             $request->session()->flash('my-alert-success', 'Login Successful');
             return redirect('/');
         }
