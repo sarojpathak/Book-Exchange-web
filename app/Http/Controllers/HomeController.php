@@ -24,8 +24,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        $books = Book::all();
+        $books = Book::orderBy('created_at', 'desc')->get();
         //    dd($books);
+
+
+
         return view('front::homepage', compact('books', $books))->with('meta-title', 'Book-Exchange');
     }
 
