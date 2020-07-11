@@ -44,7 +44,8 @@ class BookController extends Controller
 
 
         $book->save();
-        $request->session()->flash('my-alert-success', 'Book Added Sucessfully');
+        $request->session()->flash('my-alert-success', 'Book Exchange Added');
+
         return redirect('/');
     }
 
