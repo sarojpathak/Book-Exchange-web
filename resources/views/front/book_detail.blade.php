@@ -33,6 +33,9 @@
             <div clsss="row p-3">
                 <div class="clo-md-12">
                     <h4 class="text-center text-dark py-2">Want this book? : Exchange with yours!</h4>
+                    @if(Auth::user()->id==$book->belongs_to)
+                    <h2 class="alert alert-danger">You cant exchange your to with yourself</h2>
+                    @else
                     @if(count($usersBook)==0)
                     <h2 class="alert alert-danger">Please Post somebook to
                         exchange</h2>
@@ -41,13 +44,21 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <h6 for="book_offered" class="font-weight-bold text-muted">Choose your book to exchange
+                                @if(count($usersBook)==0) <h4 for="book_offered" class="font-weight-bold text-muted">
+                                    Please Post books to exchange
+                                    first
+                                </h4>
+                                @else
+
+                                <h6 for="book_offered" class="font-weight-bold text-muted">Choose your book to
+                                    exchange
                                 </h6>
                                 <select class="form-control" name="book_offered" id="book_offered">
                                     @foreach ($usersBook as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
                                 </select>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <input type="hidden" name="bookWanted" value="{{$book->id}}">
@@ -60,6 +71,7 @@
                         </div>
 
                     </form>
+                    @endif
                     @endif
                 </div>
             </div>
