@@ -19,29 +19,36 @@
     </div>
 </header>
 
-
-<!-- Book list section -->
-<div class="container">
-    @foreach ($books as $book)
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    <img class="book-image-big" src={{asset('storage/'.($book->image))}} alt="Book Image" />
+<div class="container mt-4 p-4">
+    <div class="row d-flex">
+        @foreach ($books as $book)
+        <div class="col-md-4 mt-4">
+            <div class="card shadow py-2">
+            <div class="book-image-container">
+                <img class="book-image-big center mt-2" src={{asset('storage/'.($book->image))}} alt="Book Image" />
                 </div>
-                <div class="col-md-6">
-                    <h3>{{$book->name}}</h3>
-                    <h6 class="text-muted">{{$book->author}}</h6>
-                    <p>{{Str::limit($book->description,100)}}
-                    </p>
+                <div class="card-body py-2">
+                    <div class="py-2">
+                    <h5 class="text-center">{{$book->name}}</h5>
+                    <small class="pull-right text-muted">
+                        -{{$book->author}}
+                    </small>
+                    </div>
+                    <p class=""><small>{{Str::limit($book->description,70)}}</small>
+                    </p> 
+                </div>
 
-                    <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary border-light">View Detail</a>
-
+                <div class="text-center pb-2">
+                    <a href="{{route('book-detail',$book->id)}}" class="btn btn-primary">View Detail</a>
                 </div>
             </div>
+
         </div>
+
+
+        @endforeach
     </div>
-    @endforeach
+
 </div>
 
 @endsection
