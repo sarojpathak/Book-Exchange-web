@@ -70,4 +70,11 @@ class BookController extends ApiController
         return $this->sendResponse($result);
 
     }
+
+    public function getBookDetail($bookId)
+    {
+        $this->transformer->includeRelations = true;
+        $result = $this->dao->getBoookData($bookId);
+        return $this->sendResponse($result);
+    }
 }

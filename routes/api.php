@@ -35,5 +35,6 @@ Route::get('/me','Api\UserController@getLoginUser');
 // book add edit update delete
 
 Route::post('/book/add','Api\BookController@addBook');
-Route::get('/books','Api\BookController@index');
-Route::get('/books/{user_id}','Api\BookController@getBookByUser');
+Route::get('/book','Api\BookController@index');
+Route::get('/book/detail/{book_id}','Api\BookController@getBookDetail');
+Route::get('/book/{user_id}','Api\BookController@getBookByUser');
