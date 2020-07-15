@@ -118,11 +118,13 @@ class HomeController extends Controller
             ->select('exchanges.*', 
                     'RB.id As by_uid', 
                     'RB.name As requested_by', 
-                    'RT.id AS to_ui', 
+                    'RT.id AS to_uid', 
                     'RT.name AS requested_to', 
                     'BO.name As book_offered', 
                     'BW.name As book_wanted')
-            ->where('RT.id', Auth::user()->id)->where('exchanges.status', 'requested')
+            ->where('RT.id', Auth::user()->id)
+            ->where('exchanges.status', 'requested')
+            ->orWhere('exchanges.status', 'accepted')
             ->get();
             return view('front::activity', compact('exchangeRequests', $exchangeRequests));
     }

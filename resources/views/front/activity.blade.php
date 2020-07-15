@@ -25,8 +25,16 @@
       </div>
     <div class="col-md-3 pull-right">
     <div class="pull-right">
+    @if($request->status === 'requested')
     <a href="#" class="p-1 px-2 btn-outline-primary btn my-md-1">Accept</a>
     <a href="#" class="p-1 btn-outline-danger btn my-md-1">Decline</a></div>
+    @elseif($request->status === 'accepted')
+        <form action="{{route('getUserInfo')}}" method="POST" encType="form-data">
+        @csrf
+            <input name="uid" value="{{$request->by_uid}}"  hidden />
+            <button type="submit" class="p-1 btn-outline-success btn my-md-1">Contact Info</button>
+        </form>
+    @endif
     </div>
    </div>
   </div>

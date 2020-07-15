@@ -40,3 +40,5 @@ Route::post('/users/login', 'userController@postLogin')->name('postlogin');
 Route::post('/users/logout', 'userController@logout')->name('logout');
 Route::post('users/addbook', 'BookController@postBook')->name('addbook');
 Route::post('/users/exchangebook', "BookController@postBookExchange")->name('bookexchange');
+Route::post('/users/user-info', 'userController@getUserInfo')->name('getUserInfo');
+
