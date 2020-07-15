@@ -10,20 +10,35 @@ class Exchange extends Model
 
         'book_wanted', 'book_offered', 'requested_by', 'requested_to', 'status'
     ];
+    public function wantedId()
+    {
+        return $this->belongsTo('App\Book','book_wanted');
+    }
 
-    public function destinationId()
+    public function offeredId()
+    {
+        return $this->belongsTo('App\Book','book_offered');
+    }
+
+    public function requestedTo()
     {
         return $this->belongsTo('App\User','requested_to');
     }
 
-
-    public function reviews()
+    public function requestedBy()
     {
-        return $this->hasMany('App\Book','book_wanted')->where('publish',1);
+        return $this->belongsTo('App\User','requested_by');
     }
 
-    public function dispatches()
-    {
-        return $this->hasMany('App\User','requested_id')->where('publish',1);
-    }
+
+
+//    public function reviews()
+//    {
+//        return $this->hasMany('App\Book','book_wanted')->where('publish',1);
+//    }
+//
+//    public function dispatches()
+//    {
+//        return $this->hasMany('App\User','requested_id')->where('publish',1);
+//    }
 }
