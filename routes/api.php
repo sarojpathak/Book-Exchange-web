@@ -41,5 +41,7 @@ Route::get('/book/{user_id}','Api\BookController@getBookByUser');
 
 
 //exchange add edit delete and get
-
+Route::post('/exchange/add','Api\ExchangeController@postExchange');
 Route::get('/exchange','Api\ExchangeController@getExchange');
+Route::get('/exchange/requestedto/{requested_id}','Api\ExchangeController@getExchnageStatus');
+Route::get('/exchange/requestedby/{requested_by}','Api\ExchangeController@getExchnageRequestedBy');
