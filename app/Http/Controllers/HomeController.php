@@ -109,7 +109,7 @@ class HomeController extends Controller
     }
 
 
-    public function getRequests()
+    public function getRequestsTo()
     {
         $exchangeRequests = DB::table('exchanges')
             ->join('users As RB', 'exchanges.requested_by', '=', 'RB.id')
@@ -130,6 +130,27 @@ class HomeController extends Controller
             ->orWhere('exchanges.status', 'accepted')
             ->get();
         return view('front::activity', compact('exchangeRequests', $exchangeRequests));
+    }
+
+    public function getRequestsBy()
+    {
+        $exRequests = DB::table('exchanges')
+            ->join('users As RB', 'exchanges.requested_by', '=', 'RB.id')
+            ->join('users AS RT', 'exchanges.requested_to', '=', 'RT.id')
+            ->join('books AS BO', 'exchanges.book_offered', '=', 'BO.id')
+            ->join('books AS BW', 'exchanges.book_wanted', '=', 'BW.id')
+            ->select(
+                'exchanges.*',
+                'RB.id As by_uid',
+                'RB.name As requested_by',
+                'RT.id AS to_uid',
+                'RT.name AS requested_to',
+                'BO.name As book_offered',
+                'BW.name As book_wanted'
+            )
+            ->where('RB.id', Auth::user()->id)
+            ->get();
+        return view('front::request', compact('exRequests', $exRequests));
     }
 
     public function updateRequestStatus(Request $request)

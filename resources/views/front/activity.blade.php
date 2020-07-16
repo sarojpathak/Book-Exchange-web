@@ -7,7 +7,7 @@
         <div class="row p-5">
             <div class="col-md-12">
                 <div class="text-white text-center">
-                    <h1>Requests</h1>
+                    <h1>Requests for You</h1>
                 </div>
             </div>
         </div>
@@ -20,9 +20,8 @@
     @if($request->status === 'requested')
         <div class="row py-2" style="background-color: #d9f5ff">
             <div class="col-md-9">
-            <h5 class="text-warning">Requested</h5>
                 <span class="font-weight-bold text-primary">{{$request->requested_by}}</span>
-                want to exchange the book <span class="font-weight-bold text-info">"{{$request->book_offered}}"</span>
+                send a request to exchange the book <span class="font-weight-bold text-info">"{{$request->book_offered}}"</span>
                 with your book <span class="font-weight-bold text-info">"{{$request->book_wanted}}"</span>
             </div>
             <div class="col-md-3">
@@ -41,9 +40,8 @@
         @else
         <div class="row py-2" style="background: #beffba">
             <div class="col-md-9">
-                <h5 class="text-success">Accepted</h5>
-                <span class="font-weight-bold text-primary">{{$request->requested_by}}</span>
-                want to exchange the book <span class="font-weight-bold text-info">"{{$request->book_offered}}"</span>
+                You have accepted the request of <span class="font-weight-bold text-primary">{{$request->requested_by}}</span>
+                to exchange the book <span class="font-weight-bold text-info">"{{$request->book_offered}}"</span>
                 with your book <span class="font-weight-bold text-info">"{{$request->book_wanted}}"</span>
             </div>
             <div class="col-md-3">

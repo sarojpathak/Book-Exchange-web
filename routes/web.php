@@ -31,7 +31,8 @@ Route::get('/users/addbook', 'HomeController@getAddBook')->name('addbook');
 Route::get('/users/book-detail/{id}', 'HomeController@getBookDetailPage')->name('book-detail');
 Route::get('/users/profile/{id}', 'HomeController@getProfile')->name('getProfile');
 Route::get('/users/booklist/{id}', 'HomeController@getUsersBook')->name('getUsersBooks');
-Route::get('/users/requests', 'HomeController@getRequests')->name('getRequests');
+Route::get('/users/requests-to', 'HomeController@getRequestsTo')->name('getRequestsTo');
+Route::get('/users/requests-by', 'HomeController@getRequestsBy')->name('getRequestsBy');
 
 
 //post route

@@ -52,7 +52,10 @@
                         <a class="nav-link" href="{{route('getUsersBooks',Auth::user()->id)}}">My Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('getRequests')}}">Activity</a>
+                        <a class="nav-link" href="{{route('getRequestsBy')}}">Requests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('getRequestsTo')}}">Notification</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href={{route('getProfile',Auth::user()->id)}}>Profile</a>
