@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 
 class Exchange extends Model
 {
+    use Notifiable,HasApiTokens;
     protected $fillable = [
 
         'book_wanted', 'book_offered', 'requested_by', 'requested_to', 'status'
@@ -29,6 +32,10 @@ class Exchange extends Model
     {
         return $this->belongsTo('App\User','requested_by');
     }
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
 
 
