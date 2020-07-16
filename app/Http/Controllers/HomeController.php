@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Daos\UserDao;
 use App\Http\Services\HomeService;
 use App\Book;
+use App\Exchanges;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -115,17 +116,35 @@ class HomeController extends Controller
             ->join('users AS RT', 'exchanges.requested_to', '=', 'RT.id')
             ->join('books AS BO', 'exchanges.book_offered', '=', 'BO.id')
             ->join('books AS BW', 'exchanges.book_wanted', '=', 'BW.id')
-            ->select('exchanges.*', 
-                    'RB.id As by_uid', 
-                    'RB.name As requested_by', 
-                    'RT.id AS to_uid', 
-                    'RT.name AS requested_to', 
-                    'BO.name As book_offered', 
-                    'BW.name As book_wanted')
+            ->select(
+                'exchanges.*',
+                'RB.id As by_uid',
+                'RB.name As requested_by',
+                'RT.id AS to_uid',
+                'RT.name AS requested_to',
+                'BO.name As book_offered',
+                'BW.name As book_wanted'
+            )
             ->where('RT.id', Auth::user()->id)
             ->where('exchanges.status', 'requested')
             ->orWhere('exchanges.status', 'accepted')
             ->get();
-            return view('front::activity', compact('exchangeRequests', $exchangeRequests));
+        return view('front::activity', compact('exchangeRequests', $exchangeRequests));
+    }
+
+    public function updateRequestStatus(Request $request)
+    {
+        $exchangeRequests = Exchanges::find($request->id);
+        if ($request->has('accepted')) {
+            $exchangeRequests->status = 'accepted';
+            $exchangeRequests->save();
+            $request->session()->flash('my-alert-success', 'You have accepted book exchange request');
+            return redirect()->back();
+        } else if ($request->has('declined')) {
+            $exchangeRequests->status = 'declined';
+            $exchangeRequests->save();
+            $request->session()->flash('my-alert-success', 'You have decilined book exchange request');
+            return redirect()->back();
+        }
     }
 }
