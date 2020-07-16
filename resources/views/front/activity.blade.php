@@ -16,16 +16,17 @@
 
 <div class="container">
     @foreach ($exchangeRequests as $request)
-    <div class="card shadow mb-3">
-        <div class="card-body row">
+    <div class="shadow mb-3">
+    @if($request->status === 'requested')
+        <div class="row py-2" style="background-color: #d9f5ff">
             <div class="col-md-9">
-                <span class="font-weight-bold text-success">{{$request->requested_by}}</span>
+            <h5 class="text-warning">Requested</h5>
+                <span class="font-weight-bold text-primary">{{$request->requested_by}}</span>
                 want to exchange the book <span class="font-weight-bold text-info">"{{$request->book_offered}}"</span>
                 with your book <span class="font-weight-bold text-info">"{{$request->book_wanted}}"</span>
             </div>
-            <div class="col-md-3 pull-right">
+            <div class="col-md-3">
                 <div class="pull-right">
-                    @if($request->status === 'requested')
                     <form action="{{route('updateRequestStatus')}}" method="POST" encType="form-data">
                         @csrf
                         <button type="submit" name="accepted" value='accepted'
@@ -35,15 +36,27 @@
                         <input type="hidden" value="{{$request->id}}" name="id">
                     </form>
                 </div>
-                @elseif($request->status === 'accepted')
+            </div>
+        </div>
+        @else
+        <div class="row py-2" style="background: #beffba">
+            <div class="col-md-9">
+                <h5 class="text-success">Accepted</h5>
+                <span class="font-weight-bold text-primary">{{$request->requested_by}}</span>
+                want to exchange the book <span class="font-weight-bold text-info">"{{$request->book_offered}}"</span>
+                with your book <span class="font-weight-bold text-info">"{{$request->book_wanted}}"</span>
+            </div>
+            <div class="col-md-3">
+                <div class="pull-right">
                 <form action="{{route('getUserInfo')}}" method="POST" encType="form-data">
                     @csrf
                     <input name="uid" value="{{$request->by_uid}}" hidden />
                     <button type="submit" class="p-1 btn-outline-success btn my-md-1">Contact Info</button>
                 </form>
-                @endif
+                </div>
             </div>
         </div>
+        @endif
     </div>
     @endforeach
 </div>
