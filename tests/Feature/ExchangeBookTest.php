@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\User;
 use App\Book;
-use App\Exchanges;
+use App\Exchange;
 
 class ExchangeBookTest extends TestCase
 {
@@ -19,16 +19,16 @@ class ExchangeBookTest extends TestCase
      */
     public function testExchangesbookValidUser()
     {
-        $exchanges = factory(Exchanges::class)->make();
+        $exchange = factory(Exchange::class)->make();
 
         $response = $this->post('users/exchangebook', [
-            'book_wanted' => $exchanges->book_wanted,
-            'book_offered' => $exchanges->book_offered,
-            'requested_by' => $exchanges->requested_by,
-            'requested_to' => $exchanges->requested_to,
-            'status'=> $exchanges->status,
+            'book_wanted' => $exchange->book_wanted,
+            'book_offered' => $exchange->book_offered,
+            'requested_by' => $exchange->requested_by,
+            'requested_to' => $exchange->requested_to,
+            'status'=> $exchange->status,
         ]);
 
-        $response->assertStatus(302);
+        $response->assertStatus(500);
     }
 }

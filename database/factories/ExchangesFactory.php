@@ -2,12 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Exchanges;
+use App\Exchange;
 use Faker\Generator as Faker;
 use App\User;
 use App\Book;
 
-$factory->define(App\Exchanges::class, function (Faker $faker) {
+$factory->define(App\Exchange::class, function (Faker $faker) {
     return [
         'book_wanted' =>factory('App\Book')->create()->id,
         'book_offered'=> factory('App\Book')->create()->id,
