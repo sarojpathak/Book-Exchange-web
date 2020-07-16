@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book;
-use App\Exchanges;
+use App\Exchange;
 use Illuminate\Support\Str;
 use App\Traits\UploadTrait;
 use App\User;
@@ -52,7 +52,7 @@ class BookController extends Controller
     public function postBookExchange(Request $request)
     {
         // dd($request->all());
-        $exchange = new Exchanges;
+        $exchange = new Exchange;
         $exchange->book_offered = $request->book_offered;
         $exchange->book_wanted = $request->bookWanted;
         $exchange->requested_by = $request->requested_by;

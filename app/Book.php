@@ -15,6 +15,12 @@ class Book extends Model
 
     ];
 
+    public function userID()
+    {
+        return $this->belongsTo('App\User','belongs_to');
+    }
+
+
     protected $hidden = [
         'password', 'remember_token',
     ];
