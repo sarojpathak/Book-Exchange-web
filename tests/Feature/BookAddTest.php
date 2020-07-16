@@ -48,5 +48,19 @@ class BookAddTest extends TestCase
         $response->assertStatus(302);
     }
 
-   
+    public function testgetUserBookDetailsbyId()
+    {
+        $book = factory(Book::class)->make();
+
+        $response = $this->get('users/book-detail/{id}', [
+            'name' => $book->name,
+            'author' => $book->author,
+            'description' => $book->description,
+            'image' => $book->image,
+            'condition'=> $book->condition,
+            'belongs_to'=>$book->belongs_to,
+        ]);
+
+        $response->assertStatus(500);
+    }
 }
