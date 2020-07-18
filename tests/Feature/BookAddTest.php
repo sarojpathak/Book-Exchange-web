@@ -32,35 +32,37 @@ class BookAddTest extends TestCase
         $response->assertStatus(302);
     }
 
-    public function testgetAddBookAValidUser()
-    {
-        $book = factory(Book::class)->make();
+    // public function testgetAddBookAValidUser()
+    // {
+    //     $book = (Book::class);
 
-        $response = $this->get('users/addbook', [
-            'name' => $book->name,
-            'author' => $book->author,
-            'description' => $book->description,
-            'image' => $book->image,
-            'condition'=> $book->condition,
-            'belongs_to'=>$book->belongs_to,
-        ]);
+    //     $response = $this->get('users/addbook');
 
-        $response->assertStatus(302);
-    }
+    //     $response->assertViewIs($book);
+    // }
 
-    public function testgetUserBookDetailsbyId()
-    {
-        $book = factory(Book::class)->make();
+    // public function testgetUserBookDetailsbyId()
+    // {
+    //     $book = factory(Book::class)->make();
 
-        $response = $this->get('users/book-detail/{id}', [
-            'name' => $book->name,
-            'author' => $book->author,
-            'description' => $book->description,
-            'image' => $book->image,
-            'condition'=> $book->condition,
-            'belongs_to'=>$book->belongs_to,
-        ]);
+    //     $response = $this->get('users/book-detail/{id}', [
+    //         'name' => $book->name,
+    //         'author' => $book->author,
+    //         'description' => $book->description,
+    //         'image' => $book->image,
+    //         'condition'=> $book->condition,
+    //         'belongs_to'=>$book->belongs_to,
+    //     ]);
 
-        $response->assertStatus(500);
-    }
+    //     $response->assertOk();
+    // }
+
+    // public function testgetbooksdetails()
+    // {
+    //     $books = Book::get();
+    //     $response = $this->get('/');
+    //     $response->assertViewHasAll(array ($books));
+    //     $response->assertStatus(200);
+
+    // }
 }

@@ -9,10 +9,10 @@ use App\Book;
 
 $factory->define(App\Exchange::class, function (Faker $faker) {
     return [
-        'book_wanted' =>factory('App\Book')->create()->id,
-        'book_offered'=> factory('App\Book')->create()->id,
-        'requested_by' =>factory('App\User')->create()->id,
-        'requested_to'=> factory('App\User')->create()->id,
-        'status'=>$faker->sentence,
+        'book_offered'=> '25',
+        'book_wanted' =>'26',
+        'requested_by' =>'99',
+        'requested_to'=> '100',
+        'status'=>'In Progress',
     ];
 });

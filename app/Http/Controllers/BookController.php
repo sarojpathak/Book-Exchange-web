@@ -54,7 +54,7 @@ class BookController extends Controller
         // dd($request->all());
         $exchange = new Exchange;
         $exchange->book_offered = $request->book_offered;
-        $exchange->book_wanted = $request->bookWanted;
+        $exchange->book_wanted = $request->book_wanted;
         $exchange->requested_by = $request->requested_by;
         $exchange->requested_to = $request->requested_to;
         $exchange->status = $request->status;

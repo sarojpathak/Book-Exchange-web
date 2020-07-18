@@ -19,16 +19,17 @@ class ExchangeBookTest extends TestCase
      */
     public function testExchangesbookValidUser()
     {
+        $this->withoutExceptionHandling();
         $exchange = factory(Exchange::class)->make();
 
         $response = $this->post('users/exchangebook', [
-            'book_wanted' => $exchange->book_wanted,
             'book_offered' => $exchange->book_offered,
+            'book_wanted' => $exchange->book_wanted,
             'requested_by' => $exchange->requested_by,
             'requested_to' => $exchange->requested_to,
             'status'=> $exchange->status,
         ]);
 
-        $response->assertStatus(500);
+        $response->assertStatus(302);
     }
 }

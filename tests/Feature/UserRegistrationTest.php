@@ -16,6 +16,7 @@ class UserRegistrationTest extends TestCase
         $response = $this->get('/users/register');
 
         $response->assertStatus(200);
+        $response->assertSuccessful();
     }
 
 
@@ -45,7 +46,7 @@ class UserRegistrationTest extends TestCase
             'email' => $user->email,
             'password' => 'secret',
             'password_confirmation' => 'secret',
-            'phone' => $user->phone,
+            'phone' => '1254789654',
             'address'=> $user->address,
         ]);
 
