@@ -57,12 +57,28 @@ class BookAddTest extends TestCase
     //     $response->assertOk();
     // }
 
-    // public function testgetbooksdetails()
-    // {
-    //     $books = Book::get();
-    //     $response = $this->get('/');
-    //     $response->assertViewHasAll(array ($books));
-    //     $response->assertStatus(200);
+    public function testGetBooksDetails()
+    {
+        //Given we have books in the database
+        $books = factory('App\Book')->create();
 
-    // }
+        //When user visit the books page
+        $response = $this->get('/');
+        
+        //He should be able to read the books
+        $response->assertSee($books->name);
+
+    }
+
+    public function testGetBooksDetailsById()
+    {
+         //Given we have task in the database
+        $book = factory('App\Book')->create();
+        //When user visit the task's URI
+        $response = $this->get('/users/book-detail/{id}'.$book->id);
+        //He can see the task details
+        $response->assertSee($book->name)
+        ->assertSee($book->author);
+
+    }
 }
