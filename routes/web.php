@@ -31,7 +31,7 @@ Route::get('/users/addbook', 'HomeController@getAddBook')->name('addbook');
 Route::get('/users/book-detail/{id}', 'HomeController@getBookDetailPage')->name('book-detail');
 Route::get('/users/profile/{id}', 'HomeController@getProfile')->name('getProfile');
 Route::get('/users/booklist/{id}', 'HomeController@getUsersBook')->name('getUsersBooks');
-
+Route::get('/users/editbook/{id}', 'HomeController@getEditBook')->name('getEditBook');
 
 //post route
 Route::post('/users/register', 'userController@registerUser')->name('postRegister');
@@ -39,3 +39,4 @@ Route::post('/users/login', 'userController@postLogin')->name('postlogin');
 Route::post('/users/logout', 'userController@logout')->name('logout');
 Route::post('users/addbook', 'BookController@postBook')->name('addbook');
 Route::post('/users/exchangebook', "BookController@postBookExchange")->name('bookexchange');
+Route::post('/users/editbook', 'BookController@postEditBook')->name('postEditBook');
