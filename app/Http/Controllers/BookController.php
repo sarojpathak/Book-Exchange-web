@@ -73,7 +73,7 @@ class BookController extends Controller
             'author' => ['string', 'required'],
             'description' => ['required', 'string',],
             'image'     =>  ['image', 'mimes:jpeg,png,jpg,gif|max:2048'],
-            'condition' => ['string']
+            'condition' => ['string', 'required']
         ]);
 
 
@@ -95,6 +95,6 @@ class BookController extends Controller
         $book->image = $book->image;
         $book->save();
         $request->session()->flash('my-alert-success', 'Book Edited Successfully');
-        return redirect(route('getUsersBooks', $request->id));
+        return redirect(route('getUsersBooks', Auth::user()->id));
     }
 }
