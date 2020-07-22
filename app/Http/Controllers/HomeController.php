@@ -100,9 +100,14 @@ class HomeController extends Controller
             $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
             $book->image = 'books/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
         }
-
-
         $book->save();
         return redirect('/');
+    }
+
+    public function getEditBook(Request $request)
+    {
+        $book = Book::find($request->id);
+        // dd($book);
+        return view('front::editbook', compact('book', $book));
     }
 }
