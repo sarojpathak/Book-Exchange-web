@@ -47,7 +47,6 @@ class PassportController extends Controller
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] =  $user->createToken('BookExchange')->accessToken;
-        $success['name'] =  $user->name;
         return response()->json(['status' =>$this->successStatus, 'success' => $success]);
     }
     /**
