@@ -16,10 +16,19 @@
 </header>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <form action="{{route('postEditBook')}}" method="POST" enctype="multipart/form-data">
-                @csrf
+    <form action="{{route('postEditBook')}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row">
+            <div class="col-md-4">
+                <div class="control-group text-center py-4">
+                    <img class='book-image-container' src={{asset('storage/'.($book->image))}} alt="image" />
+                    <div class="form-group floating-label-form-group controls pt-2">
+                        <input placeholder="Book Image" type="file" class="form-control-file text-muted" name="image">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
                 <div class="control-group">
                     @if ($errors->any())
                     <div class="alert alert-danger">
@@ -49,13 +58,6 @@
                         <label>Description:</label>
                         <textarea type="text" name="description" placeholder="Description" required
                             class="form-control text-center">{{$book->description}}</textarea>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <img class='book-image-container' src={{asset('storage/'.($book->image))}} alt="image" />
-                    <div class="form-group floating-label-form-group controls pt-2">
-
-                        <input placeholder="Book Image" type="file" class="form-control-file text-muted" name="image">
                     </div>
                 </div>
                 <div class="form-group my-4 text-center">
@@ -88,12 +90,12 @@
                         @endif
                     </div>
                 </div>
-                <input type="hidden" value="{{$book->id}}" name="id" />
-                <div class="form-group my-4 text-center">
-                    <button type="submit" class="btn btn-primary">Update Book</button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+        <input type="hidden" value="{{$book->id}}" name="id" />
+        <div class="form-group my-4 text-center">
+            <button type="submit" class="btn btn-primary">Update Book</button>
+        </div>
+    </form>
 </div>
 @endsection

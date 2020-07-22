@@ -16,7 +16,7 @@
 </header>
 
 <div class="mx-2">
-    <table class="table table-dark">
+    <table class="table table-dark table-responsive">
         <thead class="bg-secondary">
             <tr>
                 <th scope="col">#</th>
@@ -42,8 +42,10 @@
                 <td>{{$item->condition}}</td>
                 <td>{{$item->status}}</td>
                 <td>
-                    <a class="text-light btn btn-primary" href="{{route('getEditBook',$item->id)}}">Edit</a>
-                    <a class="text-light btn btn-danger mt-2" href="#">Delete</a>
+                    <a class="btn text-light text-center btn-primary btn-small btn-block" href="{{route('getEditBook',$item->id)}}">Edit</a>
+                    <form>
+                        <button class="btn text-light text-center btn-danger btn-small mt-2 btn-block" href="#">Delete</button>
+                    </form>
                 </td>
             </tr>
 
