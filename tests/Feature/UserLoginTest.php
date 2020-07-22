@@ -22,4 +22,16 @@ class UserLoginTest extends TestCase
 
         $response->assertStatus(302);
     }
+
+    public function testGetUserDetailsById()
+    {
+         //Given we have task in the database
+        $user = factory('App\User')->create();
+        //When user visit the task's URI
+        $response = $this->get('/users/profile/{id}'.$user->id);
+        //He can see the task details
+        $response->assertSee($user->name)
+        ->assertSee($user->email);
+
+    }
 }

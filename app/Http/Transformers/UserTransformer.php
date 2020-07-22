@@ -18,6 +18,7 @@ class UserTransformer extends TransformerAbstract
             'phone' => $model->phone,
             'address' => $model->address,
             'avatar' => ($model->avatar)?url('storage/'.$model->avatar):null,
+            'belongs' => fractal($model->bookId,BookTransformer::class),
             'created_at' => $model->created_at
         ];
     }

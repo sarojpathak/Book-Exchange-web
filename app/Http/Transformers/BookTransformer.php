@@ -16,6 +16,7 @@ class BookTransformer extends TransformerAbstract
             'name' => $model->name,
             'description' => $model->description,
             'author' => $model->author,
+            'belongs_to' => $model->belongs_to,
             'condition' => $model->condition,
             'image' => ($model->image)?url('storage/'.$model->image):null,
             'created_at' => $model->created_at

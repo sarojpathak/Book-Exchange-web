@@ -48,10 +48,15 @@ class userController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            $request->session()->put('user', $user);
-            // dd($user);
-            $request->session()->flash('my-alert-success', 'Login Successful');
-            return redirect('/');
+            if($user->role_id==1){
+                return redirect('/admin');
+            }else{
+                $request->session()->put('user', $user);
+                // dd($user);
+                $request->session()->flash('my-alert-success', 'Login Successful');
+                return redirect('/');
+            }
+
         }
         return redirect()->back()->withErrors(['Invalid Email or password']);
     }

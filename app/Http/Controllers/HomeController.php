@@ -102,12 +102,9 @@ class HomeController extends Controller
             $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
             $book->image = 'books/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
         }
-
-
         $book->save();
         return redirect('/');
     }
-
 
     public function getRequestsTo()
     {
@@ -167,5 +164,13 @@ class HomeController extends Controller
             $request->session()->flash('my-alert-success', 'You have decilined book exchange request');
             return redirect()->back();
         }
+    }
+  
+    public function getEditBook(Request $request)
+    {
+        $book = Book::find($request->id);
+        // dd($book);
+        return view('front::editbook', compact('book', $book));
+
     }
 }
