@@ -67,4 +67,11 @@ class userController extends Controller
         $request->session()->flush();
         return redirect('/');
     }
+
+    public function getUserInfo(Request $request)
+    {
+        $uid = $request['uid'];
+        $user = User::find($uid);
+        return view('front::userinfo', compact('user', $user));
+    }
 }
