@@ -73,7 +73,7 @@ class BookController extends Controller
             'author' => ['string', 'required'],
             'description' => ['required', 'string',],
             'image'     =>  ['image', 'mimes:jpeg,png,jpg,gif|max:2048'],
-            'condition' => ['string']
+            'condition' => ['string', 'required']
         ]);
 
 

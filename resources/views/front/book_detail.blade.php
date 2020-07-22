@@ -61,7 +61,7 @@
                                 @endif
                             </div>
                             <div class="col-md-6">
-                                <input type="hidden" name="bookWanted" value="{{$book->id}}">
+                                <input type="hidden" name="book_wanted" value="{{$book->id}}">
                                 <input type="hidden" name="requested_by" value="{{Auth::user()->id}}">
                                 <input type="hidden" name="requested_to" value="{{$book->belongs_to}}">
                                 <input type="hidden" name="status" value="requested">

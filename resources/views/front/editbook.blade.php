@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <img class='image-fluid' src={{asset('storage/'.($book->image))}} alt="image" />
+                    <img class='book-image-container' src={{asset('storage/'.($book->image))}} alt="image" />
                     <div class="form-group floating-label-form-group controls pt-2">
 
                         <input placeholder="Book Image" type="file" class="form-control-file text-muted" name="image">
@@ -61,11 +61,31 @@
                 <div class="form-group my-4 text-center">
                     <div class="control-group">
                         <label class="text-muted">Condition of Book</label>
+                        @if($book->condition=='new')
                         <div class="form-group floating-label-form-group controls">
                             <select class="form-control text-center" name="condition">
                                 <option value="{{$book->condition}}">{{$book->condition}}</option>
+                                <option value="like new">Like New</option>
+                                <option value="old">Old</option>
                             </select>
                         </div>
+                        @elseif($book->condition=='old')
+                        <div class="form-group floating-label-form-group controls">
+                            <select class="form-control text-center" name="condition">
+                                <option value="{{$book->condition}}">{{$book->condition}}</option>
+                                <option value="new">New</option>
+                                <option value="like new">Like new</option>
+                            </select>
+                        </div>
+                        @else
+                        <div class="form-group floating-label-form-group controls">
+                            <select class="form-control text-center" name="condition">
+                                <option value="{{$book->condition}}">{{$book->condition}}</option>
+                                <option value=" new"> New</option>
+                                <option value="old">Old</option>
+                            </select>
+                        </div>
+                        @endif
                     </div>
                 </div>
                 <input type="hidden" value="{{$book->id}}" name="id" />
