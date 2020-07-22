@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Daos\UserDao;
 use App\Http\Services\HomeService;
 use App\Book;
-use App\Exchanges;
+use App\Exchange;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,8 +55,11 @@ class HomeController extends Controller
     public function getBookDetailPage($id)
     {
         $book = Book::find($id);
-        $usersBook = Book::find($id)::where("belongs_to", "=", Auth::user()->id)->get();
-        return view('front::book_detail', compact('book', $book, 'usersBook', $usersBook));
+        if (Auth::user()) {
+            $usersBook = Book::find($id)::where("belongs_to", "=", Auth::user()->id)->get();
+            return view('front::book_detail', compact('book', $book, 'usersBook', $usersBook));
+        }
+        return  view('front::book_detail', compact('book', $book));
     }
 
     public function getProfile($id)
@@ -152,7 +155,7 @@ class HomeController extends Controller
 
     public function updateRequestStatus(Request $request)
     {
-        $exchangeRequests = Exchanges::find($request->id);
+        $exchangeRequests = Exchange::find($request->id);
         if ($request->has('accepted')) {
             $exchangeRequests->status = 'accepted';
             $exchangeRequests->save();
@@ -165,12 +168,11 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
-  
+
     public function getEditBook(Request $request)
     {
         $book = Book::find($request->id);
         // dd($book);
         return view('front::editbook', compact('book', $book));
-
     }
 }

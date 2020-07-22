@@ -33,6 +33,10 @@
             <div clsss="row p-3">
                 <div class="clo-md-12">
                     <h4 class="text-center text-dark py-2">Want this book? : Exchange with yours!</h4>
+                    @if(!Auth::user())
+                    <h2 class="alert alert-danger">You must be logged in to send request</h2>
+                    @else
+
                     @if(Auth::user()->id==$book->belongs_to)
                     <h2 class="alert alert-danger">You cant exchange your to with yourself</h2>
                     @else
@@ -71,6 +75,7 @@
                         </div>
 
                     </form>
+                    @endif
                     @endif
                     @endif
                 </div>
