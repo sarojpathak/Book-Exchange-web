@@ -28,4 +28,11 @@ class UserController extends ApiController
         $result = $this->dao->getUserDetail($user->user_id);
         return $this->sendResponse($result);
     }
+
+    public function UserDetail($id)
+    {
+        $this->transformer->includeRelations = true;
+        $result = $this->dao->getUserDetail($id);
+        return $this->sendResponse($result);
+    }
 }
