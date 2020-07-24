@@ -42,9 +42,9 @@ class BookController extends ApiController
         $book->author=$request->author;
         $book->description=$request->description;
         $book->condition=$request->condition;
-        $user = Auth::user();
+//        $user = Auth::user();
 //        print_r($user); exit;
-        $book->belongs_to=$user->id;
+        $book->belongs_to=$request->belongs_to;
 
 
 
