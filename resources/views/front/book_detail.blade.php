@@ -24,7 +24,7 @@
                 <div class="col-md-6">
                     <h3>{{$book->name}}</h3>
                     <h6 class="text-muted">{{$book->author}}</h6>
-                    <p>{{Str::limit($book->description)}}
+                    <p>{{$book->description}}
                     </p>
                     <h6 class="text-secondary">Condition: <span class="text-info">{{$book->condition}}</span></h6>
                 </div>
@@ -33,11 +33,15 @@
             <div clsss="row p-3">
                 <div class="clo-md-12">
                     <h4 class="text-center text-dark py-2">Want this book? : Exchange with yours!</h4>
+                    @if(!Auth::user())
+                    <h2 class="alert alert-danger text-center">You must be logged in to send request</h2>
+                    @else
+
                     @if(Auth::user()->id==$book->belongs_to)
-                    <h2 class="alert alert-danger">You cant exchange your to with yourself</h2>
+                    <h2 class="alert alert-danger text-center">You cant exchange your to with yourself</h2>
                     @else
                     @if(count($usersBook)==0)
-                    <h2 class="alert alert-danger">Please Post somebook to
+                    <h2 class="alert alert-danger text-center">Please Post somebook to
                         exchange</h2>
                     @else
                     <form action="{{route('bookexchange')}}" method="POST">
@@ -61,7 +65,7 @@
                                 @endif
                             </div>
                             <div class="col-md-6">
-                                <input type="hidden" name="bookWanted" value="{{$book->id}}">
+                                <input type="hidden" name="book_wanted" value="{{$book->id}}">
                                 <input type="hidden" name="requested_by" value="{{Auth::user()->id}}">
                                 <input type="hidden" name="requested_to" value="{{$book->belongs_to}}">
                                 <input type="hidden" name="status" value="requested">
@@ -71,6 +75,7 @@
                         </div>
 
                     </form>
+                    @endif
                     @endif
                     @endif
                 </div>

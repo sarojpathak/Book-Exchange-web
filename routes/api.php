@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 Route::get('/posts','Api\PostController@index');
 Route::get('/user','Api\UserController@index');
+Route::get('/user/{id}','Api\UserController@UserDetail');
 Route::get('/me','Api\UserController@getLoginUser');
 
 
@@ -37,7 +38,7 @@ Route::get('/me','Api\UserController@getLoginUser');
 Route::post('/book/add','Api\BookController@addBook');
 Route::get('/book','Api\BookController@index');
 Route::get('/book/detail/{book_id}','Api\BookController@getBookDetail');
-Route::get('/book/{user_id}','Api\BookController@getBookByUser');
+Route::get('/book/{email}','Api\BookController@getBookByUser');
 
 
 //exchange add edit delete and get

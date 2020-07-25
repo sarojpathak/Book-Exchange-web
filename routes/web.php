@@ -31,6 +31,9 @@ Route::get('/users/addbook', 'HomeController@getAddBook')->name('addbook');
 Route::get('/users/book-detail/{id}', 'HomeController@getBookDetailPage')->name('book-detail');
 Route::get('/users/profile/{id}', 'HomeController@getProfile')->name('getProfile');
 Route::get('/users/booklist/{id}', 'HomeController@getUsersBook')->name('getUsersBooks');
+Route::get('/users/requests-to', 'HomeController@getRequestsTo')->name('getRequestsTo');
+Route::get('/users/requests-by', 'HomeController@getRequestsBy')->name('getRequestsBy');
+Route::get('/users/editbook/{id}', 'HomeController@getEditBook')->name('getEditBook');
 
 
 //post route
@@ -39,3 +42,7 @@ Route::post('/users/login', 'userController@postLogin')->name('postlogin');
 Route::post('/users/logout', 'userController@logout')->name('logout');
 Route::post('users/addbook', 'BookController@postBook')->name('addbook');
 Route::post('/users/exchangebook', "BookController@postBookExchange")->name('bookexchange');
+Route::post('/users/user-info', 'userController@getUserInfo')->name('getUserInfo');
+Route::post('/users/request', 'HomeController@updateRequestStatus')->name('updateRequestStatus');
+Route::post('/users/editbook', 'BookController@postEditBook')->name('postEditBook');
+

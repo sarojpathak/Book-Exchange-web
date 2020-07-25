@@ -7,10 +7,12 @@ namespace App\Http\Controllers;
 use App\Http\Daos\UserDao;
 use App\Http\Services\HomeService;
 use App\Book;
+use App\Exchange;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
 use TCG\Voyager\Facades\Voyager;
@@ -53,8 +55,11 @@ class HomeController extends Controller
     public function getBookDetailPage($id)
     {
         $book = Book::find($id);
-        $usersBook = Book::find($id)::where("belongs_to", "=", Auth::user()->id)->get();
-        return view('front::book_detail', compact('book', $book, 'usersBook', $usersBook));
+        if (Auth::user()) {
+            $usersBook = Book::find($id)::where("belongs_to", "=", Auth::user()->id)->get();
+            return view('front::book_detail', compact('book', $book, 'usersBook', $usersBook));
+        }
+        return  view('front::book_detail', compact('book', $book));
     }
 
     public function getProfile($id)
@@ -100,9 +105,74 @@ class HomeController extends Controller
             $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
             $book->image = 'books/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
         }
-
-
         $book->save();
         return redirect('/');
+    }
+
+    public function getRequestsTo()
+    {
+        $exchangeRequests = DB::table('exchanges')
+            ->join('users As RB', 'exchanges.requested_by', '=', 'RB.id')
+            ->join('users AS RT', 'exchanges.requested_to', '=', 'RT.id')
+            ->join('books AS BO', 'exchanges.book_offered', '=', 'BO.id')
+            ->join('books AS BW', 'exchanges.book_wanted', '=', 'BW.id')
+            ->select(
+                'exchanges.*',
+                'RB.id As by_uid',
+                'RB.name As requested_by',
+                'RT.id AS to_uid',
+                'RT.name AS requested_to',
+                'BO.name As book_offered',
+                'BW.name As book_wanted'
+            )
+            ->where('RT.id', Auth::user()->id)
+            ->where('exchanges.status', 'requested')
+            ->orWhere('exchanges.status', 'accepted')
+            ->get();
+        return view('front::activity', compact('exchangeRequests', $exchangeRequests));
+    }
+
+    public function getRequestsBy()
+    {
+        $exRequests = DB::table('exchanges')
+            ->join('users As RB', 'exchanges.requested_by', '=', 'RB.id')
+            ->join('users AS RT', 'exchanges.requested_to', '=', 'RT.id')
+            ->join('books AS BO', 'exchanges.book_offered', '=', 'BO.id')
+            ->join('books AS BW', 'exchanges.book_wanted', '=', 'BW.id')
+            ->select(
+                'exchanges.*',
+                'RB.id As by_uid',
+                'RB.name As requested_by',
+                'RT.id AS to_uid',
+                'RT.name AS requested_to',
+                'BO.name As book_offered',
+                'BW.name As book_wanted'
+            )
+            ->where('RB.id', Auth::user()->id)
+            ->get();
+        return view('front::request', compact('exRequests', $exRequests));
+    }
+
+    public function updateRequestStatus(Request $request)
+    {
+        $exchangeRequests = Exchange::find($request->id);
+        if ($request->has('accepted')) {
+            $exchangeRequests->status = 'accepted';
+            $exchangeRequests->save();
+            $request->session()->flash('my-alert-success', 'You have accepted book exchange request');
+            return redirect()->back();
+        } else if ($request->has('declined')) {
+            $exchangeRequests->status = 'declined';
+            $exchangeRequests->save();
+            $request->session()->flash('my-alert-success', 'You have decilined book exchange request');
+            return redirect()->back();
+        }
+    }
+
+    public function getEditBook(Request $request)
+    {
+        $book = Book::find($request->id);
+        // dd($book);
+        return view('front::editbook', compact('book', $book));
     }
 }

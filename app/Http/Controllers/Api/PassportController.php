@@ -19,7 +19,7 @@ class PassportController extends Controller
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('BookExchange')->accessToken;
-            return response()->json(['status' =>$this->successStatus, 'success' => $success]);
+            return response()->json(['status' =>$this->successStatus, 'id'=>$user->id, 'success' => $success]);
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
@@ -47,7 +47,6 @@ class PassportController extends Controller
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] =  $user->createToken('BookExchange')->accessToken;
-        $success['name'] =  $user->name;
         return response()->json(['status' =>$this->successStatus, 'success' => $success]);
     }
     /**

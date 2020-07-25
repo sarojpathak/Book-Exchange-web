@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="page-heading">
-                    <h1>Hi! {{$user->name}}</h1>
+                    <h1>User Info</h1>
                 </div>
             </div>
         </div>
@@ -76,17 +76,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-2">
-            <a href="#" class="btn-primary text-light text-uppercase btn-sm" name="btnEdit" value="Edit Profile">Edit
-                Profile</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-5">
-        </div>
-        <div class="col-md-7">
-
         </div>
     </div>
 </div>

@@ -16,39 +16,41 @@
 </header>
 
 <div class="mx-2">
-<table class="table table-dark">
-    <thead class="bg-secondary">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Book</th>
-            <th scope="col">Author</th>
-            <th scope="col">Description</th>
-            <th scope="col">Image</th>
-            <th scope="col">Condition</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($usersBook as $item)
-        <tr>
-            <th scope="row">{{$loop->iteration}}</th>
-            <td>{{$item->name}}</td>
-            <td>{{$item->author}}</td>
-            <td>{{$item->description}}</td>
-            <td class="text-center">
-            <img class="book-image-small" src="{{asset('/storage/'.$item->image)}}" alt="Book Image" />
-            </td>
-            <td>{{$item->condition}}</td>
-            <td>{{$item->status}}</td>
-            <td>
-                <a class="text-light" href="#">Edit</a>
-                <a class="text-light" href="#">Delete</a>
-            </td>
-        </tr>
+    <table class="table table-dark table-responsive">
+        <thead class="bg-secondary">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Book</th>
+                <th scope="col">Author</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Condition</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($usersBook as $item)
+            <tr>
+                <th scope="row">{{$loop->iteration}}</th>
+                <td>{{$item->name}}</td>
+                <td>{{$item->author}}</td>
+                <td>{{$item->description}}</td>
+                <td class="text-center">
+                    <img class="book-image-small" src="{{asset('/storage/'.$item->image)}}" alt="Book Image" />
+                </td>
+                <td>{{$item->condition}}</td>
+                <td>{{$item->status}}</td>
+                <td>
+                    <a class="btn text-light text-center btn-primary btn-small btn-block" href="{{route('getEditBook',$item->id)}}">Edit</a>
+                    <form>
+                        <button class="btn text-light text-center btn-danger btn-small mt-2 btn-block" href="#">Delete</button>
+                    </form>
+                </td>
+            </tr>
 
-        @endforeach
-    </tbody>
-</table>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection

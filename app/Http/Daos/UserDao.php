@@ -17,6 +17,6 @@ class UserDao extends BaseDao
 
     public function getUserDetail($userID)
     {
-        return $this->model->where('id',$userID)->get();
+        return $this->model->where('email',$userID)->get();
     }
 }
