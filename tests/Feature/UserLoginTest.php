@@ -34,14 +34,4 @@ class UserLoginTest extends TestCase
         ->assertSee($user->email);
 
     }
-
-    public function testGetUserBookListById()
-    {
-         //Given we have task in the database
-        $book = factory('App\Book')->create();
-        //When user visit the task's URI
-        $response = $this->get('/users/booklist/{id}',['id' => 1]);
-        //He can see the task details
-        $response->assertSee($book->name);
-    }
 }

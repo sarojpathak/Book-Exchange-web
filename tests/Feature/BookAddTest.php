@@ -81,4 +81,13 @@ class BookAddTest extends TestCase
         ->assertSee($book->author);
 
     }
+
+    public function testGetUserBookListById()
+    {
+         //Given we have task in the database
+        $book = factory('App\Book')->create();
+        //When user visit the task's URI
+        $response = $this->get('/users/booklist/{id}',['id' => 99]);
+        $this->assertEquals(1,Book::all()->count());
+    }
 }
