@@ -16,9 +16,9 @@ class ExchangeDao extends BaseDao
 
     public function getExchangeByStatus($id)
     {
-        $status = 'requested';
+        $status = 'confirmed';
         $status1 = 'accepted';
-        return $this->model->orWhere('status','LIKE',"%$status%")->orWhere('status','LIKE',"%$status1%")->where(['requested_to'=>$id])->get();
+        return $this->model->where(['requested_to'=>$id])->where('status','!=',$status)->get();
     }
 
     public function getExchangeByRequestedBy($id)
