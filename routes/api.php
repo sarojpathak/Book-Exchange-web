@@ -39,6 +39,7 @@ Route::post('/book/add','Api\BookController@addBook');
 Route::get('/book','Api\BookController@index');
 Route::get('/book/detail/{book_id}','Api\BookController@getBookDetail');
 Route::get('/book/{email}','Api\BookController@getBookByUser');
+Route::delete('/book/{id}','Api\BookController@deleteBook');
 
 
 //exchange add edit delete and get

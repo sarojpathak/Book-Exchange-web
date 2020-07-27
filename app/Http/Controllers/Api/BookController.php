@@ -24,7 +24,7 @@ class BookController extends ApiController
     }
     public function addBook(Request $request)
     {
-//        print_r($request); exit;
+       // print_r($request->all()); exit;
         $validator = Validator::make($request->all(),[
             'name'              => [ 'string','required'],
             'author'=>['string','required'],
@@ -48,16 +48,17 @@ class BookController extends ApiController
 
 
 
-        if($request->has('image')) {
+        if ($request->has('image')) {
             $file = $request->file('image');
 
-            $destinationPath = storage_path('app/public/books'.'/'.date('F').date('Y'));
-            $file->move($destinationPath, time()."-".$file->getClientOriginalName());
-            $book->image = 'books/' .date('F').date('Y').'/'.time()."-". $file->getClientOriginalName();
+            $destinationPath = storage_path('app/public/books' . '/' . date('F') . date('Y'));
+            $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
+            $book->image = 'books/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
+
+//            print_r($book->image); exit;
         }
 
-        $input = $request->all();
-        $user = Book::create($input);
+        $book->save();
         $success['token'] =  $book->createToken('BookExchange')->accessToken;
         $success['name'] =  $book->name;
         return response()->json(['success'=>$success], $this->successStatus);
@@ -76,5 +77,16 @@ class BookController extends ApiController
         $this->transformer->includeRelations = true;
         $result = $this->dao->getBoookData($bookId);
         return $this->sendResponse($result);
+    }
+
+    public function deleteBook($id)
+    {
+        $this->transformer->includeRelations = true;
+        $result = $this->dao->delete($id);
+
+        $book = new Book;
+        $success['token'] =  $book->createToken('BookExchange')->accessToken;
+        $success['id'] =  $id;
+        return response()->json(['success'=>$success], $this->successStatus);
     }
 }
