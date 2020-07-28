@@ -127,3 +127,7 @@ input[type=file]::before {
     margin: 0;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
