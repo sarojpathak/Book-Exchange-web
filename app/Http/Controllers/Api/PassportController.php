@@ -2,19 +2,32 @@
 
 
 namespace App\Http\Controllers\Api;
+use App\Http\Daos\OauthAccessTokenDao;
+use App\Http\Daos\UserDao;
+use App\Http\Transformers\UserTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use App\Http\Traits\ConrtrollerResponseTrait;
+
 class PassportController extends Controller
 {
     public $successStatus = 200;
+    use ConrtrollerResponseTrait;
     /**
      * login api
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(UserDao $dao,UserTransformer $transformer,OauthAccessTokenDao $oauthAccessTokenDao)
+    {
+        $this->dao = $dao;
+        $this->oauthAccessTokenDao = $oauthAccessTokenDao;
+        $this->transformer = $transformer;
+    }
     public function login(){
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
@@ -58,5 +71,34 @@ class PassportController extends Controller
     {
         $user = Auth::user();
         return response()->json(['success' => $user], $this->successStatus);
+    }
+
+    public function updateUser(Request $request,$id)
+    {
+        $this->transformer->includeRelations = true;
+        $data = $request->all();
+        if($request->password)
+        {
+            $data['password'] = bcrypt($data['password']);
+        }
+        if ($request->has('avatar')) {
+            $file = $request->file('avatar');
+            print_r($file); exit;
+            $destinationPath = storage_path('app/public/users' . '/' . date('F') . date('Y'));
+            $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
+            $data['avatar'] = 'users/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
+
+//            print_r($data['avater']); exit;
+        }
+        $result = $this->dao->update($data,$id);
+        if($result){
+            $user = new User;
+            $success['token'] =  $user->createToken('BookExchange')->accessToken;
+            $success['id'] =  $id;
+            return response()->json(['success'=>$success], $this->successStatus);
+        }else{
+            return response()->json(['error'=>'Unauthorised'], 401);
+        }
+
     }
 }
