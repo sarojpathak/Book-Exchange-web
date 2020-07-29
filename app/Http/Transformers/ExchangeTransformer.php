@@ -14,10 +14,10 @@ class ExchangeTransformer extends TransformerAbstract
         return [
             'id' => (int) $model->id,
             'status' => $model->status,
-//            'book_wanted' => fractal($model->wantedId,BookTransformer::class),
-//            'book_offered' => fractal($model->offeredId,BookTransformer::class),
-//            'requested_by' =>fractal($model->requestedBy,UserTransformer::class),
-//            'requested_to' => fractal($model->requestedTo,UserTransformer::class),
+           'book_wanted' => fractal($model->wantedId,BookTransformer::class),
+           'book_offered' => fractal($model->offeredId,BookTransformer::class),
+           'requested_by' =>fractal($model->requestedBy,UserTransformer::class),
+           'requested_to' => fractal($model->requestedTo,UserTransformer::class),
             'created_at' => $model->created_at
         ];
     }

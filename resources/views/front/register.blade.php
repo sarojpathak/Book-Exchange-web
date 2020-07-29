@@ -67,11 +67,39 @@
             <input type="text" name="address" placeholder="Address" class="form-control text-center" required>
           </div>
         </div>
+
+        <div class="control-group">
+          <div class="form-group controls pt-4 text-center">
+            <input type="checkbox" class="form-check-input mt-2" id="terms" class="terms" />
+            <label class="form-check-label text-primary pointer" id="checkTerm" data-toggle="modal" data-target="#exampleModalCenter"><u>Terms and Conditions</u></label>
+          </div>
+        </div>
         
         <div class="form-group my-4 text-center">
           <button type="submit" class="btn btn-primary btn-block">Register</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Terms and Conditions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+        <li>The application will store your personal details. i.e; Name, Email, Phone and Address.</li>
+        <li>When your exchange request is accepted or you accepts incomming request your contact information will be shared to the user of other end.</li>
+        <li>You will be banned form the application if you post any kind of books or magazines that contain porn.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

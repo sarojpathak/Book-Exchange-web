@@ -38,7 +38,7 @@
                     @else
 
                     @if(Auth::user()->id==$book->belongs_to)
-                    <h2 class="alert alert-danger text-center">You cant exchange your to with yourself</h2>
+                    <h3 class="alert alert-danger text-center">You cant exchange your own book with yourself</h3>
                     @else
                     @if(count($usersBook)==0)
                     <h2 class="alert alert-danger text-center">Please Post somebook to
