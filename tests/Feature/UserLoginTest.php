@@ -55,4 +55,17 @@ class UserLoginTest extends TestCase
 
         
     }
+
+    public function testGetRequestedBy()
+    {
+        $exRequests = factory('App\Exchange')->create();
+        $response = $this->get('/users/requests-by',['id' => 99]);
+        $response->assertSee($exRequests->requested_by)
+        ->assertSee($exRequests->requested_to)
+        ->assertSee($exRequests->book_offered)
+        ->assertSee($exRequests->book_wanted);
+
+
+        
+    }
 }
