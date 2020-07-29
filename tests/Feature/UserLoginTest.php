@@ -34,4 +34,25 @@ class UserLoginTest extends TestCase
         ->assertSee($user->email);
 
     }
+
+    public function testPostUserInformation()
+    {
+        $user = factory('App\User')->create();
+        $response = $this->get('/users/user-info',['id'=>25]);
+        $response->assertSee($user->name)
+        ->assertSee($user->email);
+    }
+
+    public function testGetRequestedTo()
+    {
+        $exchangeRequests = factory('App\Exchange')->create();
+        $response = $this->get('/users/requests-to',['id' => 100]);
+        $response->assertSee($exchangeRequests->requested_by)
+        ->assertSee($exchangeRequests->requested_to)
+        ->assertSee($exchangeRequests->book_offered)
+        ->assertSee($exchangeRequests->book_wanted);
+
+
+        
+    }
 }
