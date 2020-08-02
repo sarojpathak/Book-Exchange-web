@@ -77,8 +77,7 @@ class PassportController extends Controller
     {
         $this->transformer->includeRelations = true;
         $data = $request->all();
-        
-        if($data['password'])
+        if($request->password)
         {
             $data['password'] = bcrypt($data['password']);
         }
