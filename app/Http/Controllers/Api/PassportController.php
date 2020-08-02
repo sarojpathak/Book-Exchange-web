@@ -77,13 +77,14 @@ class PassportController extends Controller
     {
         $this->transformer->includeRelations = true;
         $data = $request->all();
-        if($request->password)
+        
+        if($data['password'])
         {
             $data['password'] = bcrypt($data['password']);
         }
         if ($request->has('avatar')) {
             $file = $request->file('avatar');
-            print_r($file); exit;
+            // print_r($file); exit;
             $destinationPath = storage_path('app/public/users' . '/' . date('F') . date('Y'));
             $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
             $data['avatar'] = 'users/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
