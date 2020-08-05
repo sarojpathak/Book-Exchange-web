@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Daos\OauthAccessTokenDao;
 use App\Http\Daos\UserDao;
 use App\Http\Transformers\UserTransformer;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Traits\ConrtrollerResponseTrait;
 
-class PassportController extends Controller
+class PassportController extends ApiController
 {
     public $successStatus = 200;
     use ConrtrollerResponseTrait;
@@ -56,7 +57,18 @@ class PassportController extends Controller
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
+
         $input = $request->all();
+//        print_r($input); exit;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+
+            $destinationPath = storage_path('app/public/users' . '/' . date('F') . date('Y'));
+            $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
+            $input->avatar = 'users/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
+
+            print_r($input->avatar); exit;
+        }
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] =  $user->createToken('BookExchange')->accessToken;
@@ -77,7 +89,7 @@ class PassportController extends Controller
     {
         $this->transformer->includeRelations = true;
         $data = $request->all();
-        print_r($data); exit;
+//        print_r($data); exit;
         if($request->password)
         {
             $data['password'] = bcrypt($data['password']);
