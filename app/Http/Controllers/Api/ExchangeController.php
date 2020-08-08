@@ -71,5 +71,36 @@ class ExchangeController extends ApiController
         return $this->sendResponse($result);
     }
 
+    public function updateExchange(Request $request,$id)
+    {
+        $this->transformer->includeRelations = true;
+        $data = $request->all();
+        $result = $this->dao->update($data,$id);
+        if($result){
+            $exchange = new Exchange();
+            $success['token'] =  $exchange->createToken('BookExchange')->accessToken;
+            $success['id'] =  $id;
+            return response()->json(['success'=>$success], $this->successStatus);
+        }else{
+            return response()->json(['error'=>'Result Not Found'], 401);
+        }
+
+    }
+
+    public function deleteExchange($id)
+    {
+        $this->transformer->includeRelations = true;
+        $result = $this->dao->delete($id);
+        if($result){
+            $exchange = new Exchange();
+            $success['token'] =  $exchange->createToken('BookExchange')->accessToken;
+            $success['id'] =  $id;
+            return response()->json(['success'=>$success], $this->successStatus);
+        }else{
+            return response()->json(['error'=>'Result Not Found'], 401);
+        }
+
+    }
+
 
 }

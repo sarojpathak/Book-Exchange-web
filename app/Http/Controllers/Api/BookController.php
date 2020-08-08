@@ -79,14 +79,42 @@ class BookController extends ApiController
         return $this->sendResponse($result);
     }
 
+    public function updateBook(Request $request,$id)
+    {
+        $this->transformer->includeRelations = true;
+        $book = new Book;
+        $data = $request->all();
+        if ($request->has('image')) {
+            $file = $request->file('image');
+
+            $destinationPath = storage_path('app/public/books' . '/' . date('F') . date('Y'));
+            $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
+            $book->image = 'books/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
+
+            print_r($book->image); exit;
+        }
+        $result = $this->dao->update($data,$id);
+        if($result){
+            $success['token'] =  $book->createToken('BookExchange')->accessToken;
+            $success['id'] =  $id;
+            return response()->json(['success'=>$success], $this->successStatus);
+        }else{
+            return response()->json(['error'=>'Unauthorised'], 401);
+        }
+    }
+
     public function deleteBook($id)
     {
         $this->transformer->includeRelations = true;
         $result = $this->dao->delete($id);
 
-        $book = new Book;
-        $success['token'] =  $book->createToken('BookExchange')->accessToken;
-        $success['id'] =  $id;
-        return response()->json(['success'=>$success], $this->successStatus);
+        if($result) {
+            $book = new Book;
+            $success['token'] = $book->createToken('BookExchange')->accessToken;
+            $success['id'] = $id;
+            return response()->json(['success' => $success], $this->successStatus);
+        }else{
+            return response()->json(['error'=>'Result Not Found'], 401);
+        }
     }
 }

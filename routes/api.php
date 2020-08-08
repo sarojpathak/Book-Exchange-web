@@ -41,12 +41,15 @@ Route::prefix('')->middleware('cors')->group(function() {
     Route::get('/book', 'Api\BookController@index');
     Route::get('/book/detail/{book_id}', 'Api\BookController@getBookDetail');
     Route::get('/book/{email}', 'Api\BookController@getBookByUser');
+    Route::put('/book/{id}', 'Api\BookController@updateBook');
     Route::delete('/book/{id}', 'Api\BookController@deleteBook');
 
 
 //exchange add edit delete and get
     Route::post('/exchange/add', 'Api\ExchangeController@postExchange');
     Route::get('/exchange', 'Api\ExchangeController@getExchange');
+    Route::put('/exchange/{id}', 'Api\ExchangeController@updateExchange');
+    Route::delete('/exchange/{id}', 'Api\ExchangeController@deleteExchange');
     Route::get('/exchange/requestedto/{requested_id}', 'Api\ExchangeController@getExchnageStatus');
     Route::get('/exchange/requestedby/{requested_by}', 'Api\ExchangeController@getExchnageRequestedBy');
 });
