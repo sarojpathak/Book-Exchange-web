@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 //});
 Route::prefix('')->middleware('cors')->group(function() {
     Route::post('login', 'Api\PassportController@login');
-    Route::post('register', 'Api\UserController@register');
+    Route::post('register', 'Api\PassportController@register');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('get-details', 'Api\PassportController@getDetails');
     });

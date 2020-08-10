@@ -60,8 +60,8 @@ class PassportController extends ApiController
 
         $input = $request->all();
 //        print_r($input); exit;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
 
             $destinationPath = storage_path('app/public/users' . '/' . date('F') . date('Y'));
             $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
