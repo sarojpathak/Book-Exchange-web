@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends \TCG\Voyager\Models\User
 {
-    use Notifiable,HasApiTokens;
+    use Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -18,10 +18,10 @@ class User extends \TCG\Voyager\Models\User
      */
     protected $fillable = [
 
-        'name', 'email', 'password','phone','address',
-//=======
-//        'name', 'email', 'password','phone','address',
-//>>>>>>> registeruser
+        'name', 'email', 'password', 'phone', 'address', 'avatar',
+        //=======
+        //        'name', 'email', 'password','phone','address',
+        //>>>>>>> registeruser
     ];
 
     /**
@@ -44,6 +44,6 @@ class User extends \TCG\Voyager\Models\User
 
     public function bookId()
     {
-        return $this->hasMany('App\Book','belongs_to');
+        return $this->hasMany('App\Book', 'belongs_to');
     }
 }

@@ -68,6 +68,7 @@ class BookController extends Controller
     public function postEditBook(Request $request)
     {
         $book = Book::find($request->id);
+
         $request->validate([
             'name' => ['string', 'required'],
             'author' => ['string', 'required'],
@@ -75,7 +76,6 @@ class BookController extends Controller
             'image'     =>  ['image', 'mimes:jpeg,png,jpg,gif|max:2048'],
             'condition' => ['string', 'required']
         ]);
-
 
 
         if ($request->hasFile('image')) {

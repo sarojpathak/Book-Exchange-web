@@ -20,11 +20,11 @@
     <div class="row">
         <div class="col-md-5">
             <div class="profile-img">
-            @if($user->image == '')
+                @if($user->avatar == 'users/default.png')
                 <img src="{{asset('assets/img/defaultUser.png')}}" alt="User Image" />
-            @else 
-                <img src="{{asset('/storage'.$user->image)}}" alt="User Image" />
-            @endif
+                @else
+                <img src={{asset('storage/'.($user->avatar))}} alt="User Image" />
+                @endif
             </div>
         </div>
         <div class="col-md-5">
@@ -78,7 +78,8 @@
             </div>
         </div>
         <div class="col-md-2">
-            <a href="#" class="btn-primary text-light text-uppercase btn-sm" name="btnEdit" value="Edit Profile">Edit
+            <a href="{{route('editProfile',$user->id)}}" class="btn-primary text-light text-uppercase btn-sm"
+                name="btnEdit" value="Edit Profile">Edit
                 Profile</a>
         </div>
     </div>
