@@ -181,4 +181,13 @@ class HomeController extends Controller
         $user = User::find($request->id);
         return view('front.editprofile', compact('user', $user));
     }
+
+    public function getConfirmEmail()
+    {
+        return view('front::confirmemail');
+    }
+    public function getChangePassword(Request $request)
+    {
+        return view('front::changepassword');
+    }
 }

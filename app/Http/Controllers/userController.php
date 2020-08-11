@@ -110,4 +110,16 @@ class userController extends Controller
         $request->session()->flash('my-alert-success', 'User Edited Successfully');
         return redirect(route('getProfile', Auth::user()->id));
     }
+
+    public function ChangeUserPassword(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        if ($request->email == $user->email) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+            $request->session()->flash('my-alert-success', 'Password Change Successfully');
+            return redirect(route('getProfile', Auth::user()->id));
+        };
+        return redirect()->back()->with('my-alert-error', 'You can only change password of your account');
+    }
 }

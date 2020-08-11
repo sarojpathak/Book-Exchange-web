@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <form action="{{route('postlogin')}}" method="POST">
+            <form action="{{ route('password.email') }}" method="POST">
                 @csrf
 
                 @if($errors->any())
@@ -30,17 +30,10 @@
                         <input type="email" name="email" placeholder="Email" class="form-control">
                     </div>
                 </div>
-                <div class="control-group">
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Password</label>
-                        <input type="password" name="password" placeholder="Password" class="form-control">
-                    </div>
-                </div>
 
                 <div class="form-group my-4 text-center">
-                    <button class="btn btn-primary btn-block" type="submit">Login</button>
+                    <button class="btn btn-primary btn-block" type="submit">Send Reset Link Email</button>
                 </div>
-                <a href="{{route('confirmEmail')}}" class="pull-right">Forgot Password?</a>
             </form>
         </div>
     </div>
