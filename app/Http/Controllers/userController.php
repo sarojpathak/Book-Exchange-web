@@ -93,13 +93,19 @@ class userController extends Controller
             $destinationPath = storage_path('app/public/users' . '/' . date('F') . date('Y'));
             $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
             $request->image = 'users/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
+            // Set user name
+            $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->avatar = $request->image;
+            $user->save();
+            $request->session()->flash('my-alert-success', 'User Edited Successfully');
+            return redirect(route('getProfile', Auth::user()->id));
         }
-
         // Set user name
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->avatar = $request->image;
         $user->save();
         $request->session()->flash('my-alert-success', 'User Edited Successfully');
         return redirect(route('getProfile', Auth::user()->id));
