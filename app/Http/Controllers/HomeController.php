@@ -175,4 +175,10 @@ class HomeController extends Controller
         // dd($book);
         return view('front::editbook', compact('book', $book));
     }
+
+    public function getEditProfile(Request $request)
+    {
+        $user = User::find($request->id);
+        return view('front.editprofile', compact('user', $user));
+    }
 }

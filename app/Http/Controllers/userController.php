@@ -29,6 +29,7 @@ class userController extends Controller
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'address' => $request->address,
+
         ]);
         Auth::attempt(['email' => $request->email, 'password' => $request->password]);
         $user = Auth::user();
@@ -48,15 +49,14 @@ class userController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            if($user->role_id==1){
+            if ($user->role_id == 1) {
                 return redirect('/admin');
-            }else{
+            } else {
                 $request->session()->put('user', $user);
                 // dd($user);
                 $request->session()->flash('my-alert-success', 'Login Successful');
                 return redirect('/');
             }
-
         }
         return redirect()->back()->withErrors(['Invalid Email or password']);
     }
@@ -73,5 +73,35 @@ class userController extends Controller
         $uid = $request['uid'];
         $user = User::find($uid);
         return view('front::userinfo', compact('user', $user));
+    }
+
+    public function editUserInfo(Request $request)
+    {
+        $user = User::find($request->id);
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'min:10'],
+            'address' => ['required', 'string'],
+        ]);
+
+
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+
+            $destinationPath = storage_path('app/public/users' . '/' . date('F') . date('Y'));
+            $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
+            $request->image = 'users/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
+        }
+
+        // Set user name
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->avatar = $request->image;
+        $user->save();
+        $request->session()->flash('my-alert-success', 'User Edited Successfully');
+        return redirect(route('getProfile', Auth::user()->id));
     }
 }
