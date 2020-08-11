@@ -23,6 +23,8 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+Auth::routes();
+
 //get route
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/users/register', 'HomeController@getregisteruser')->name('getregister');
@@ -35,15 +37,18 @@ Route::get('/users/requests-to', 'HomeController@getRequestsTo')->name('getReque
 Route::get('/users/requests-by', 'HomeController@getRequestsBy')->name('getRequestsBy');
 Route::get('/users/editbook/{id}', 'HomeController@getEditBook')->name('getEditBook');
 Route::get('/users/editprofile/{id}', 'HomeController@getEditProfile')->name('editProfile');
+Route::get('/users/confirmemail', 'HomeController@getConfirmEmail')->name('confirmEmail');
+Route::get('/users/changepassword/{id}', 'HomeController@getChangePassword')->name('changePassword');
 
 
 //post route
 Route::post('/users/register', 'userController@registerUser')->name('postRegister');
 Route::post('/users/login', 'userController@postLogin')->name('postlogin');
 Route::post('/users/logout', 'userController@logout')->name('logout');
-Route::post('users/addbook', 'BookController@postBook')->name('addbook');
+Route::post('/users/addbook', 'BookController@postBook')->name('addbook');
 Route::post('/users/exchangebook', "BookController@postBookExchange")->name('bookexchange');
 Route::post('/users/user-info', 'userController@getUserInfo')->name('getUserInfo');
 Route::post('/users/request', 'HomeController@updateRequestStatus')->name('updateRequestStatus');
 Route::post('/users/editbook', 'BookController@postEditBook')->name('postEditBook');
 Route::post('/users/editprofile', 'userController@editUserInfo')->name('editUserInfo');
+Route::post('/users/passwordchange', 'userController@ChangeUserPassword')->name('passwordchange');

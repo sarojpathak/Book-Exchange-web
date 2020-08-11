@@ -81,6 +81,9 @@
             <a href="{{route('editProfile',$user->id)}}" class="btn-primary text-light text-uppercase btn-sm"
                 name="btnEdit" value="Edit Profile">Edit
                 Profile</a>
+            <a href="{{route('changePassword',$user->id)}}" class="btn-primary text-light text-uppercase btn-sm"
+                name="btnEdit" value="Edit Profile">change
+                password</a>
         </div>
     </div>
     <div class="row">
