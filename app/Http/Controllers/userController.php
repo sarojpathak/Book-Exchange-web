@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Redirect;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -88,6 +89,13 @@ class userController extends Controller
 
 
         if ($request->hasFile('image')) {
+            if (
+                $user->avatar
+                != 'users/default.png'
+            ) {
+                // Storage::delete('storage/' . ($user->avatar));
+                unlink('storage/' . ($user->avatar));
+            }
             $file = $request->file('image');
 
             $destinationPath = storage_path('app/public/users' . '/' . date('F') . date('Y'));

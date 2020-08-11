@@ -24,18 +24,18 @@
         @foreach ($books as $book)
         <div class="col-md-4 mt-4">
             <div class="card shadow py-2">
-            <div class="book-image-container">
-                <img class="book-image-big center mt-2" src={{asset('storage/'.($book->image))}} alt="Book Image" />
+                <div class="book-image-container">
+                    <img class="book-image-big center mt-2" src={{asset('storage/'.($book->image))}} alt="Book Image" />
                 </div>
                 <div class="card-body py-2">
                     <div class="py-2">
-                    <h5 class="text-center">{{$book->name}}</h5>
-                    <small class="pull-right text-muted">
-                        -{{$book->author}}
-                    </small>
+                        <h5 class="text-center">{{$book->name}}</h5>
+                        <small class="pull-right text-muted">
+                            -{{$book->author}}
+                        </small>
                     </div>
                     <p class=""><small>{{Str::limit($book->description,70)}}</small>
-                    </p> 
+                    </p>
                 </div>
 
                 <div class="text-center pb-2">
