@@ -17,11 +17,12 @@
 <div class="container">
     @foreach ($exchangeRequests as $request)
     <div class="shadow mb-3">
-    @if($request->status === 'requested')
+        @if($request->status === 'requested')
         <div class="row py-2" style="background-color: #d9f5ff">
             <div class="col-md-9">
                 <span class="font-weight-bold text-primary">{{$request->requested_by}}</span>
-                send a request to exchange the book <span class="font-weight-bold text-info">"{{$request->book_offered}}"</span>
+                send a request to exchange the book <span
+                    class="font-weight-bold text-info">"{{$request->book_offered}}"</span>
                 with your book <span class="font-weight-bold text-info">"{{$request->book_wanted}}"</span>
             </div>
             <div class="col-md-3">
@@ -40,17 +41,18 @@
         @else
         <div class="row py-2" style="background: #beffba">
             <div class="col-md-9">
-                You have accepted the request of <span class="font-weight-bold text-primary">{{$request->requested_by}}</span>
+                You have accepted the request of <span
+                    class="font-weight-bold text-primary">{{$request->requested_by}}</span>
                 to exchange the book <span class="font-weight-bold text-info">"{{$request->book_offered}}"</span>
                 with your book <span class="font-weight-bold text-info">"{{$request->book_wanted}}"</span>
             </div>
             <div class="col-md-3">
                 <div class="pull-right">
-                <form action="{{route('getUserInfo')}}" method="POST" encType="form-data">
-                    @csrf
-                    <input name="uid" value="{{$request->by_uid}}" hidden />
-                    <button type="submit" class="p-1 btn-outline-success btn my-md-1">Contact Info</button>
-                </form>
+                    <form action="{{route('getUserInfo')}}" method="POST" encType="form-data">
+                        @csrf
+                        <input name="uid" value="{{$request->by_uid}}" hidden />
+                        <button type="submit" class="p-1 btn-outline-success btn my-md-1">Contact Info</button>
+                    </form>
                 </div>
             </div>
         </div>

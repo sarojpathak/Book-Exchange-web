@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
+use App\Exchange;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -129,5 +131,33 @@ class userController extends Controller
             return redirect(route('getProfile', Auth::user()->id));
         };
         return redirect()->back()->with('my-alert-error', 'You can only change password of your account');
+    }
+
+    public function updateRequestStatus(Request $request)
+    {
+        $exchangeRequests = Exchange::find($request->id);
+        if ($request->has('accepted')) {
+            $exchangeRequests->status = 'accepted';
+            $exchangeRequests->save();
+            $request->session()->flash('my-alert-success', 'You have accepted book exchange request');
+            return redirect()->back();
+        } else if ($request->has('declined')) {
+            $exchangeRequests->status = 'declined';
+            $exchangeRequests->save();
+            $request->session()->flash('my-alert-success', 'You have decilined book exchange request');
+            return redirect()->back();
+        }
+    }
+    public function exchangeCompleted(Request $request)
+    {
+        $foundid = Exchange::find($request->completed);
+        $requestedbook = Book::find($foundid->book_wanted);
+        $requestedbook->belongs_to = $foundid->requested_by;
+        $gotbook = Book::find($foundid->book_offered);
+        $gotbook->belongs_to = $foundid->requested_to;
+        $requestedbook->save();
+        $gotbook->save();
+        $foundid->delete();
+        return redirect(route('home'))->with('my-alert-success', 'Book Ownership changed Successfully');
     }
 }

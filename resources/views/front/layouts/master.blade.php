@@ -55,7 +55,8 @@
                         <a class="nav-link" href="{{route('getRequestsBy')}}">Requests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('getRequestsTo')}}">Notification</a>
+                        <a class="nav-link" href="{{route('getRequestsTo')}}">Notification
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href={{route('getProfile',Auth::user()->id)}}>Profile</a>
