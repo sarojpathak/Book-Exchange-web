@@ -25,4 +25,8 @@ class ExchangeDao extends BaseDao
     {
         return $this->model->where(['requested_by'=>$id])->get();
     }
+    public function getById($id)
+    {
+        return $this->model->where('id',$id)->first();
+    }
 }

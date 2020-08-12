@@ -38,7 +38,7 @@ Route::prefix('')->middleware('cors')->group(function() {
 // book add edit update delete
 
     Route::post('/book/add', 'Api\BookController@addBook');
-    Route::get('/book', 'Api\BookController@index');
+    Route::get('/book', 'Api\BookController@getAllBook');
     Route::get('/book/detail/{book_id}', 'Api\BookController@getBookDetail');
     Route::get('/book/{email}', 'Api\BookController@getBookByUser');
     Route::put('/book/{id}', 'Api\BookController@updateBook');
@@ -49,6 +49,7 @@ Route::prefix('')->middleware('cors')->group(function() {
     Route::post('/exchange/add', 'Api\ExchangeController@postExchange');
     Route::get('/exchange', 'Api\ExchangeController@getExchange');
     Route::put('/exchange/{id}', 'Api\ExchangeController@updateExchange');
+    Route::put('/exchange/confirm/{id}', 'Api\ExchangeController@updateConfirmExchange');
     Route::delete('/exchange/{id}', 'Api\ExchangeController@deleteExchange');
     Route::get('/exchange/requestedto/{requested_id}', 'Api\ExchangeController@getExchnageStatus');
     Route::get('/exchange/requestedby/{requested_by}', 'Api\ExchangeController@getExchnageRequestedBy');

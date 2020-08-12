@@ -4,10 +4,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Exchange;
+use App\Http\Daos\BookDao;
 use App\Http\Daos\ExchangeDao;
 use App\Http\Traits\ConrtrollerResponseTrait;
 use Illuminate\Http\Request;
 use App\Http\Transformers\ExchangeTransformer;
+use function Symfony\Component\String\s;
 use Validator;
 
 
@@ -16,10 +18,11 @@ class ExchangeController extends ApiController
     public $successStatus = 200;
     use ConrtrollerResponseTrait;
 
-    public function __construct(ExchangeDao $dao, ExchangeTransformer $transformer)
+    public function __construct(ExchangeDao $dao, ExchangeTransformer $transformer,BookDao $bookDao)
     {
         $this->dao = $dao;
         $this->transformer = $transformer;
+        $this->bookDao = $bookDao;
     }
 
     public function postExchange(Request $request)
@@ -77,6 +80,30 @@ class ExchangeController extends ApiController
         $data = $request->all();
         $result = $this->dao->update($data,$id);
         if($result){
+            $exchange = new Exchange();
+            $success['token'] =  $exchange->createToken('BookExchange')->accessToken;
+            $success['id'] =  $id;
+            return response()->json(['success'=>$success], $this->successStatus);
+        }else{
+            return response()->json(['error'=>'Result Not Found'], 401);
+        }
+
+    }
+
+    public function updateConfirmExchange(Request $request,$id)
+    {
+        $this->transformer->includeRelations = true;
+        $res= [];
+        $res1= [];
+        $data = $this->dao->getById($id);
+        $id1 = $data['book_offered'];
+        $res['belongs_to'] = $data['requested_to'];
+        $id2 = $data['book_wanted'];
+        $res1['belongs_to'] = $data['requested_by'];
+        $a =  $this->bookDao->update($res,$id1);
+        $b =  $this->bookDao->update($res1,$id2);
+        $delete = $this->dao->delete($id);
+        if($delete){
             $exchange = new Exchange();
             $success['token'] =  $exchange->createToken('BookExchange')->accessToken;
             $success['id'] =  $id;

@@ -19,6 +19,12 @@ class BookDao extends BaseDao
 
     public function getBoookData($bookId)
     {
-        return $this->model->where('id',$bookId)->orderBy('created_at','DESC')->get();
+        return $this->model->where(['id'=>$bookId,'status'=>'available'])->orderBy('created_at','DESC')->get();
+    }
+
+    public function getAllBook()
+    {
+        return $this->model->where(['status'=>'available'])->orderBy('created_at','DESC')->get();
+
     }
 }

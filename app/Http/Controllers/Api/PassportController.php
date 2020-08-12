@@ -59,7 +59,6 @@ class PassportController extends ApiController
         }
 
         $input = $request->all();
-//        print_r($input); exit;
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
 
@@ -67,7 +66,6 @@ class PassportController extends ApiController
             $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
             $input->avatar = 'users/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
 
-            print_r($input->avatar); exit;
         }
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
@@ -89,19 +87,16 @@ class PassportController extends ApiController
     {
         $this->transformer->includeRelations = true;
         $data = $request->all();
-//        print_r($data); exit;
         if($request->password)
         {
             $data['password'] = bcrypt($data['password']);
         }
         if ($request->has('avatar')) {
             $file = $request->file('avatar');
-            // print_r($file); exit;
             $destinationPath = storage_path('app/public/users' . '/' . date('F') . date('Y'));
             $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
             $data['avatar'] = 'users/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
 
-//            print_r($data['avater']); exit;
         }
         $result = $this->dao->update($data,$id);
         if($result){
