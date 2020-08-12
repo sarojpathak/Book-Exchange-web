@@ -56,10 +56,33 @@
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Description:</label>
-                        <textarea type="text" name="description" placeholder="Description" required
+                        <textarea type="text" cols="30" rows="5" name="description" placeholder="Description" required
                             class="form-control text-center">{{$book->description}}</textarea>
                     </div>
                 </div>
+
+                <div class="form-group my-4 text-center">
+                    <div class="control-group">
+                        <label class="text-muted">Status of book</label>
+                        @if($book->status=='available')
+                        <div class="form-group floating-label-form-group controls">
+                            <select class="form-control text-center" name="status">
+                                <option value="{{$book->status}}">{{$book->status}}</option>
+                                <option value="notavailable">Not Available</option>
+                            </select>
+                        </div>
+                        @elseif($book->status=='notavailable')
+                        <div class="form-group floating-label-form-group controls">
+                            <select class="form-control text-center" name="status">
+                                <option value="{{$book->status}}">Not Available</option>
+                                <option value="available">Available</option>
+                            </select>
+                        </div>
+
+                        @endif
+                    </div>
+                </div>
+
                 <div class="form-group my-4 text-center">
                     <div class="control-group">
                         <label class="text-muted">Condition of Book</label>
@@ -93,9 +116,11 @@
             </div>
         </div>
         <input type="hidden" value="{{$book->id}}" name="id" />
+
         <div class="form-group my-4 text-center">
             <button type="submit" class="btn btn-primary">Update Book</button>
         </div>
+
     </form>
 </div>
 @endsection
