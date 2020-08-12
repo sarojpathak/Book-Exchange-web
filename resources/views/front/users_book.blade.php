@@ -40,11 +40,17 @@
                     <img class="book-image-small" src="{{asset('/storage/'.$item->image)}}" alt="Book Image" />
                 </td>
                 <td>{{$item->condition}}</td>
-                <td>{{$item->status}}</td>
+                @if($item->status=='available')
+                <td>Available</td>
+                @else
+                <td>Not Available</td>
+                @endif
                 <td>
-                    <a class="btn text-light text-center btn-primary btn-small btn-block" href="{{route('getEditBook',$item->id)}}">Edit</a>
+                    <a class="btn text-light text-center btn-primary btn-small btn-block"
+                        href="{{route('getEditBook',$item->id)}}">Edit</a>
                     <form>
-                        <button class="btn text-light text-center btn-danger btn-small mt-2 btn-block" href="#">Delete</button>
+                        <button class="btn text-light text-center btn-danger btn-small mt-2 btn-block"
+                            href="#">Delete</button>
                     </form>
                 </td>
             </tr>
