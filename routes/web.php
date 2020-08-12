@@ -41,6 +41,7 @@ Route::get('/users/confirmemail', 'HomeController@getConfirmEmail')->name('confi
 Route::get('/users/changepassword/{id}', 'HomeController@getChangePassword')->name('changePassword');
 
 
+
 //post route
 Route::post('/users/register', 'userController@registerUser')->name('postRegister');
 Route::post('/users/login', 'userController@postLogin')->name('postlogin');
@@ -48,8 +49,9 @@ Route::post('/users/logout', 'userController@logout')->name('logout');
 Route::post('/users/addbook', 'BookController@postBook')->name('addbook');
 Route::post('/users/exchangebook', "BookController@postBookExchange")->name('bookexchange');
 Route::post('/users/user-info', 'userController@getUserInfo')->name('getUserInfo');
-Route::post('/users/request', 'HomeController@updateRequestStatus')->name('updateRequestStatus');
+Route::post('/users/request', 'userController@updateRequestStatus')->name('updateRequestStatus');
 Route::post('/users/editbook', 'BookController@postEditBook')->name('postEditBook');
 Route::post('/users/editprofile', 'userController@editUserInfo')->name('editUserInfo');
 Route::post('/users/passwordchange', 'userController@ChangeUserPassword')->name('passwordchange');
 Route::post('/users/request/delete', 'BookController@deleteBookRequest')->name('deleteRequest');
+Route::post('/users/exchangecomplete', 'userController@exchangeCompleted')->name('exchangeCompleted');

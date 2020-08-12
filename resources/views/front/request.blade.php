@@ -49,9 +49,10 @@
                         <input name="uid" value="{{$request->to_uid}}" hidden />
                         <button type="submit" class="p-1 btn-outline-info btn my-md-1">Contact Info</button>
                     </form>
-                    <form action="completed" method="POST" encType="form-data">
+                    <form action="{{route('exchangeCompleted')}}" method="POST" encType="form-data">
                         @csrf
                         <input name="completed" value="{{$request->id}}" hidden />
+
                         <button type="submit" class="p-1 btn-outline-success btn my-md-1">Exchange Complete</button>
                     </form>
                 </div>

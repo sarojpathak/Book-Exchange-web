@@ -26,13 +26,16 @@ class HomeController extends Controller
 
     public function index()
     {
-        $books = Book::orderBy('created_at', 'desc')->get();
+
+        $books = Book::where('status', '=', 'available')->orderBy('created_at', 'desc')->get();
         //    dd($books);
 
 
 
         return view('front::homepage', compact('books', $books))->with('meta-title', 'Book-Exchange');
     }
+
+
 
     public function getregisteruser()
     {
@@ -153,21 +156,7 @@ class HomeController extends Controller
         return view('front::request', compact('exRequests', $exRequests));
     }
 
-    public function updateRequestStatus(Request $request)
-    {
-        $exchangeRequests = Exchange::find($request->id);
-        if ($request->has('accepted')) {
-            $exchangeRequests->status = 'accepted';
-            $exchangeRequests->save();
-            $request->session()->flash('my-alert-success', 'You have accepted book exchange request');
-            return redirect()->back();
-        } else if ($request->has('declined')) {
-            $exchangeRequests->status = 'declined';
-            $exchangeRequests->save();
-            $request->session()->flash('my-alert-success', 'You have decilined book exchange request');
-            return redirect()->back();
-        }
-    }
+
 
     public function getEditBook(Request $request)
     {
