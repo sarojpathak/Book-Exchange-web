@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-3">
                 <div class="pull-right">
-                    <form action="deleteRequest" method="#" encType="form-data">
+                    <form action="{{route('deleteRequest')}}" method="post" encType="form-data">
                         @csrf
                         <input name="exchangeId" value="{{$request->id}}" hidden />
                         <button type="submit" class="p-1 btn-outline-danger btn my-md-1">Delete</button>
