@@ -21,6 +21,7 @@ class CreateBooksTable extends Migration
             $table->string('image');
             $table->string('condition');
             $table->integer('belongs_to');
+            $table->string('status');
             $table->timestamps();
         });
     }

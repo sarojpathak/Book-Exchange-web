@@ -36,7 +36,7 @@ class userController extends Controller
         $user = Auth::user();
         $request->session()->put('user', $user);
         // dd($user);
-        $request->session()->flash('my-alert-success', 'You have been register Successful, please login');
+        $request->session()->flash('my-alert-success', 'You have been register Successful');
         return redirect('/');
     }
 
