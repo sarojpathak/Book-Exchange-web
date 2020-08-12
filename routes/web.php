@@ -52,3 +52,4 @@ Route::post('/users/request', 'HomeController@updateRequestStatus')->name('updat
 Route::post('/users/editbook', 'BookController@postEditBook')->name('postEditBook');
 Route::post('/users/editprofile', 'userController@editUserInfo')->name('editUserInfo');
 Route::post('/users/passwordchange', 'userController@ChangeUserPassword')->name('passwordchange');
+Route::post('/users/request/delete', 'BookController@deleteBookRequest')->name('deleteRequest');

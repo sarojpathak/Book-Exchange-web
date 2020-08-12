@@ -97,4 +97,11 @@ class BookController extends Controller
         $request->session()->flash('my-alert-success', 'Book Edited Successfully');
         return redirect(route('getUsersBooks', Auth::user()->id));
     }
+
+    public function deleteBookRequest(Request $request)
+    {
+        $exchangeRequest = Exchange::find($request->exchangeId);
+        $exchangeRequest->delete();
+        return redirect()->back()->with('my-alert-success', 'Request Deleted Successfully');
+    }
 }
