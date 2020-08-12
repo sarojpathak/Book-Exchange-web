@@ -15,6 +15,9 @@
 </header>
 
 <div class="container">
+    @if ($exchangeRequests->count() == 0)
+    <h5 class="text-center text-monospace">Nobody has send exchange request to you!</h5>
+    @endif
     @foreach ($exchangeRequests as $request)
     <div class="shadow mb-3">
         @if($request->status === 'requested')

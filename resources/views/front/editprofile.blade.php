@@ -42,8 +42,8 @@
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>*Email:</label>
-                        <h3 class="text-center">{{$user->email}}
-                        </h3>
+                        <h6 class="text-center">{{$user->email}}
+                        </h6>
                         <input type="hidden" name="email" value="{{$user->email}}" />
                     </div>
                     <hr>

@@ -2,6 +2,7 @@ body {
     font-size: 20px;
     color: #212529;
     font-family: Lora, "Times New Roman", serif;
+    min-height: 100vh;
 }
 p {
     line-height: 1.5;
@@ -333,8 +334,13 @@ header.masthead .post-heading .meta a {
 form .form-group:first-child .floating-label-form-group {
     border-top: 1px solid #dee2e6;
 }
+
+.main{
+    min-height: 75.5vh;
+}
+
 footer {
-    padding: 50px 0 65px;
+    padding: 15px 0;
 }
 footer .list-inline {
     margin: 0;
@@ -343,6 +349,7 @@ footer .list-inline {
 footer .copyright {
     font-size: 14px;
     margin-bottom: 0;
+    margin-top: 10px;
     text-align: center;
 }
 .btn {

@@ -97,9 +97,11 @@
     @endif
     @endforeach
 
-
+    <!-- content -->
+    <div class="main">
     @yield('content')
-
+    </div>
+    
     <!-- Footer -->
     <footer>
         <div class="container">

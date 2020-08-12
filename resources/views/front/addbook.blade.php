@@ -32,7 +32,7 @@
                     @endif
                     <div class="form-group floating-label-form-group controls">
                         <label>Book Name:</label>
-                        <input type="text" name="name" placeholder="Full Name" class="form-control text-center">
+                        <input type="text" name="name" placeholder="Book Name" class="form-control text-center">
                     </div>
 
                 </div>
