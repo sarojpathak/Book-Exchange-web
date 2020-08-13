@@ -99,7 +99,6 @@ class BookController extends ApiController
             $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
             $book->image = 'books/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
 
-            print_r($book->image); exit;
         }
         $result = $this->dao->update($data,$id);
         if($result){
