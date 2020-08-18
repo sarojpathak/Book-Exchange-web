@@ -96,17 +96,20 @@ input[type=file]::before {
 }
 
 .book-image-big{
-    height: auto;
-    width: 200px;
-    max-height: 240px;
+    max-height: 250px;
+    min-height: 100px;
+    max-width: 400px;
+    min-width: 250px;
 
 }
 
 .book-image-container{
-    height: 250px;
+    max-height: 250px;
+    min-height: 100px;
     width: auto;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .center {
@@ -130,4 +133,9 @@ input[type=file]::before {
 .pointer{
     cursor: pointer;
 }
+
+.cardBody{
+    min-height: 110px;
+}
+
 

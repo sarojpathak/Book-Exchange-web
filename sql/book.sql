@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jun 18, 2020 at 02:22 PM
--- Server version: 5.7.30-0ubuntu0.18.04.1
--- PHP Version: 7.2.31-1+ubuntu18.04.1+deb.sury.org+1
+-- Host: 127.0.0.1
+-- Generation Time: Aug 18, 2020 at 09:19 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,13 +24,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `books`
+--
+
+CREATE TABLE `books` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `condition` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `belongs_to` int(11) NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`id`, `name`, `author`, `description`, `image`, `condition`, `belongs_to`, `status`, `created_at`, `updated_at`) VALUES
+(3, 'China Harayeko Manxe', 'Hari bansa Aacharya', 'हरिवंश आचार्य नाम नै एउटा महत्वपूर्ण परिचय हो । संसारमा विरलै कोही नेपाली होलान्, जसलाई उनका बारेमा थाहा नभएको होस् । संसारमा विरलै नेपाली होलान्, जसलाई उनका बारमा सबै कुरा थाहा भएको होस् । रङ्गमञ्च र पर्दाका माध्यमबाट त उनलाई प्रायः सबैले देखेका र चिनेका छन् । उनी असल र महान् कलाकार मात्र होइनन् बेलाबेलामा भएका महत्वपूर्ण राजनीतिक तथा सामाजिक परिवर्तनका अभियन्ता पनि हुन् । यस्ता बहुआयामिक व्यक्तित्वको जीवन कस्तो छ ? अभिनय गरेर अरुलाई पेट मिचीमिची हसाउने र धरधरी रुवाउन पनि सक्ने यी महान् कलाकार आफ्नो वास्तविक जीवनमा कति हासेका छन् र कति रोएका छन् त ? यस्ता अनेक प्रसङ्गहरुको बेलिबिस्तार चिना हराएको मान्छे पुस्तकमा छन् । यो पुस्तक पढेपछि हामी उनलाई आफ्नो सबैभन्दा नजिकको आफन्तलाई झैँ चिन्नेछौँ', 'books/August2020/1597685077-ChinaHarayekoManxe.jpg', 'new', 2, 'available', '2020-08-17 11:39:37', '2020-08-18 00:51:08'),
+(4, 'Radha', 'Krishna Dharabasi', 'The novel is about Radha, the famous lady character from Mahabharat. All we know about her is that she was the childhood sweetheart of Krishna (not to be confused with the the author’s name). Although she is mentioned alongside Krishna in many religious texts, very few (none, in fact) is written about her adulthood. Dharabasi presents an imaginary story of her life during her romance with Krishna during younger days and after their (probable) separation.', 'books/August2020/1597686059-9001.jpg', 'like new', 2, 'available', '2020-08-17 11:55:59', '2020-08-17 11:55:59'),
+(5, 'Seto Bagh', 'Diamond Shamsher Ranaa', 'सेतो बाघ एक ऐतिहासिक पृष्ठभूमिमा लेखिएको सामाजिक उपन्यास हो । \'बडामहारानी ! आज मैले सेतो बाघ देखेँ ।\' \'कस्तो रहेछ? सरकार !\' \'निक्खुर सेतो ।\' \'त्यो सेतो बाघलाई सरकारबाट हानिबक्सिइन ?\' \'हानेँ, तर लागेन ।\'', 'books/August2020/1597686480-SetoBagh.jpg', 'old', 2, 'available', '2020-08-17 12:03:00', '2020-08-17 12:03:00'),
+(6, 'Java - The Complete Reference', 'Herbert Schildt', 'This book is a comprehensive guide to the Java language, describing its syntax, keywords and fundamental programming principles. Significant portions of the Java API library are also examined. This book is for all programmers, whether you are a novice or an experienced pro. The beginner will find its carefully paced discussions and many examples especially helpful.', 'books/August2020/1597686637-Java.jpg', 'like new', 2, 'available', '2020-08-17 12:05:37', '2020-08-17 12:05:37'),
+(7, 'The Algorithm Design Manual', 'Steven S Skiena', 'This newly expanded and updated second edition of the best-selling classic continues to take the \"mystery\" out of designing algorithms, and analyzing their efficacy and efficiency. Expanding on the first edition, the book now serves as the primary textbook of choice for algorithm design courses while maintaining its status as the premier practical reference guide to algorithms for programmers, researchers, and students.', 'books/August2020/1597728318-algo.jpg', 'new', 6, 'available', '2020-08-17 23:40:18', '2020-08-17 23:40:18'),
+(8, 'Rich Dad Poor Dad', 'Robert T. Kiyosaki', 'Rich Dad Poor Dad is Robert\'s story of growing up with two dads — his real father and the father of his best friend, his rich dad — and the ways in which both men shaped his thoughts about money and investing. The book explodes the myth that you need to earn a high income to be rich and explains the difference between working for money and having your money work for you.', 'books/August2020/1597728473-richdadpoordad.jpg', 'like new', 6, 'available', '2020-08-17 23:42:53', '2020-08-17 23:42:53'),
+(9, 'Munamadan', 'Laxmi Prasad Devkota', 'Munna Madan (Nepali: मुनामदन) is a short epic narrating the tragic story of Muna & Madan written by Nepalese poet Laxmi Prasad Devkota and one of the most popular works in Nepali literature. Muna Madan is based on an 18th-century ballad in Nepal Bhasa entitled Ji Waya La Lachhi Maduni (It hasn\'t been a month since I came). The song, which is popular in Newar society, tells the story of a merchant from Kathmandu who leaves for Tibet on business leaving behind his newly wed bride. The wife is concerned for his safety as the journey to Tibet is filled with hardships, and she pleads with him not to go. But he leaves despite her protests. When he returns home after many years, he finds that she has died.', 'books/August2020/1597728640-munamadan.jpg', 'like new', 6, 'available', '2020-08-17 23:45:40', '2020-08-17 23:45:40'),
+(10, 'Half Girlfriend', 'Chetan Bhagat', 'Once upon a time, there was a Bihari boy called Madhav. He fell in love with girl called Riya. Madhav didn\'t speak English well. Riya did. Madhav wanted a relationship. Riya didn\'t. Riya just wanted friendship. Madhav didn\'t. Riya suggested a compromise. She agreed to be his half-girlfriend. From the author of the blockbuster novels Five Point Someone, One Night @ the Call Center, The 3 Mistakes of My Life, 2 States and Revolution 2020 comes a simple and beautiful love story that will touch your heart and inspire you to chase your dreams.', 'books/August2020/1597729087-hg.jpg', 'like new', 5, 'available', '2020-08-17 23:53:07', '2020-08-17 23:53:07');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `parent_id` int(10) UNSIGNED DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT '1',
+  `order` int(11) NOT NULL DEFAULT 1,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -56,14 +90,14 @@ CREATE TABLE `data_rows` (
   `field` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `required` tinyint(1) NOT NULL DEFAULT '0',
-  `browse` tinyint(1) NOT NULL DEFAULT '1',
-  `read` tinyint(1) NOT NULL DEFAULT '1',
-  `edit` tinyint(1) NOT NULL DEFAULT '1',
-  `add` tinyint(1) NOT NULL DEFAULT '1',
-  `delete` tinyint(1) NOT NULL DEFAULT '1',
-  `details` text COLLATE utf8mb4_unicode_ci,
-  `order` int(11) NOT NULL DEFAULT '1'
+  `required` tinyint(1) NOT NULL DEFAULT 0,
+  `browse` tinyint(1) NOT NULL DEFAULT 1,
+  `read` tinyint(1) NOT NULL DEFAULT 1,
+  `edit` tinyint(1) NOT NULL DEFAULT 1,
+  `add` tinyint(1) NOT NULL DEFAULT 1,
+  `delete` tinyint(1) NOT NULL DEFAULT 1,
+  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -71,61 +105,47 @@ CREATE TABLE `data_rows` (
 --
 
 INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, `required`, `browse`, `read`, `edit`, `add`, `delete`, `details`, `order`) VALUES
-(1, 1, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(2, 1, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
-(3, 1, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, NULL, 3),
-(4, 1, 'password', 'password', 'Password', 1, 0, 0, 1, 1, 0, NULL, 4),
-(5, 1, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, NULL, 5),
-(6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, NULL, 6),
-(7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 7),
-(8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, NULL, 8),
-(9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":0}', 10),
-(10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Roles', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 11),
-(11, 1, 'settings', 'hidden', 'Settings', 0, 0, 0, 0, 0, 0, NULL, 12),
-(12, 2, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(13, 2, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
-(14, 2, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3),
-(15, 2, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
-(16, 3, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(17, 3, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
-(18, 3, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3),
-(19, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
-(20, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, NULL, 5),
-(21, 1, 'role_id', 'text', 'Role', 1, 1, 1, 1, 1, 1, NULL, 9),
-(22, 4, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(23, 4, 'parent_id', 'select_dropdown', 'Parent', 0, 0, 1, 1, 1, 1, '{\"default\":\"\",\"null\":\"\",\"options\":{\"\":\"-- None --\"},\"relationship\":{\"key\":\"id\",\"label\":\"name\"}}', 2),
-(24, 4, 'order', 'text', 'Order', 1, 1, 1, 1, 1, 1, '{\"default\":1}', 3),
-(25, 4, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 4),
-(26, 4, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\"}}', 5),
-(27, 4, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, NULL, 6),
-(28, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 7),
-(29, 5, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(30, 5, 'author_id', 'text', 'Author', 1, 0, 1, 1, 0, 1, NULL, 2),
-(31, 5, 'category_id', 'text', 'Category', 1, 0, 1, 1, 1, 0, NULL, 3),
-(32, 5, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 4),
-(33, 5, 'excerpt', 'text_area', 'Excerpt', 1, 0, 1, 1, 1, 1, NULL, 5),
-(34, 5, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, NULL, 6),
-(35, 5, 'image', 'image', 'Post Image', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1000\",\"height\":\"null\"},\"quality\":\"70%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"250\"}}]}', 7),
-(36, 5, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:posts,slug\"}}', 8),
-(37, 5, 'meta_description', 'text_area', 'Meta Description', 1, 0, 1, 1, 1, 1, NULL, 9),
-(38, 5, 'meta_keywords', 'text_area', 'Meta Keywords', 1, 0, 1, 1, 1, 1, NULL, 10),
-(39, 5, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"DRAFT\",\"options\":{\"PUBLISHED\":\"published\",\"DRAFT\":\"draft\",\"PENDING\":\"pending\"}}', 11),
-(40, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, NULL, 12),
-(41, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 13),
-(42, 5, 'seo_title', 'text', 'SEO Title', 0, 1, 1, 1, 1, 1, NULL, 14),
-(43, 5, 'featured', 'checkbox', 'Featured', 1, 1, 1, 1, 1, 1, NULL, 15),
-(44, 6, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(45, 6, 'author_id', 'text', 'Author', 1, 0, 0, 0, 0, 0, NULL, 2),
-(46, 6, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, NULL, 3),
-(47, 6, 'excerpt', 'text_area', 'Excerpt', 1, 0, 1, 1, 1, 1, NULL, 4),
-(48, 6, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, NULL, 5),
-(49, 6, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\"},\"validation\":{\"rule\":\"unique:pages,slug\"}}', 6),
-(50, 6, 'meta_description', 'text', 'Meta Description', 1, 0, 1, 1, 1, 1, NULL, 7),
-(51, 6, 'meta_keywords', 'text', 'Meta Keywords', 1, 0, 1, 1, 1, 1, NULL, 8),
-(52, 6, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}', 9),
-(53, 6, 'created_at', 'timestamp', 'Created At', 1, 1, 1, 0, 0, 0, NULL, 10),
-(54, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, NULL, 11),
-(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12);
+(1, 4, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(2, 4, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(3, 4, 'author', 'text', 'Author', 1, 1, 1, 1, 1, 1, '{}', 3),
+(4, 4, 'description', 'text', 'Description', 1, 1, 1, 1, 1, 1, '{}', 4),
+(5, 4, 'image', 'text', 'Image', 1, 1, 1, 1, 1, 1, '{}', 5),
+(6, 4, 'condition', 'text', 'Condition', 1, 1, 1, 1, 1, 1, '{}', 6),
+(7, 4, 'belongs_to', 'text', 'Belongs To', 1, 1, 1, 1, 1, 1, '{}', 7),
+(8, 4, 'status', 'text', 'Status', 1, 1, 1, 1, 1, 1, '{}', 8),
+(9, 4, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 9),
+(10, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10),
+(11, 5, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(12, 5, 'book_wanted', 'text', 'Book Wanted', 1, 1, 1, 1, 1, 1, '{}', 2),
+(13, 5, 'book_offered', 'text', 'Book Offered', 1, 1, 1, 1, 1, 1, '{}', 3),
+(14, 5, 'requested_by', 'text', 'Requested By', 1, 1, 1, 1, 1, 1, '{}', 4),
+(15, 5, 'requested_to', 'text', 'Requested To', 1, 1, 1, 1, 1, 1, '{}', 5),
+(16, 5, 'status', 'text', 'Status', 1, 1, 1, 1, 1, 1, '{}', 6),
+(17, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 7),
+(18, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
+(19, 6, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(20, 6, 'role_id', 'text', 'Role Id', 0, 1, 1, 1, 1, 1, '{}', 2),
+(21, 6, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 3),
+(22, 6, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, '{}', 4),
+(23, 6, 'avatar', 'text', 'Avatar', 0, 1, 1, 1, 1, 1, '{}', 5),
+(24, 6, 'email_verified_at', 'timestamp', 'Email Verified At', 0, 0, 0, 0, 0, 0, '{}', 6),
+(25, 6, 'password', 'text', 'Password', 1, 1, 1, 1, 1, 1, '{}', 7),
+(26, 6, 'phone', 'text', 'Phone', 1, 1, 1, 1, 1, 1, '{}', 8),
+(27, 6, 'address', 'text', 'Address', 1, 1, 1, 1, 1, 1, '{}', 9),
+(28, 6, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, '{}', 10),
+(29, 6, 'settings', 'text', 'Settings', 0, 0, 0, 0, 0, 0, '{}', 11),
+(30, 6, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 12),
+(31, 6, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 13),
+(32, 6, 'api_token', 'text', 'Api Token', 0, 0, 0, 0, 0, 0, '{}', 14),
+(33, 3, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(34, 3, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(35, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, '{}', 3),
+(36, 3, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
+(37, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(38, 2, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(39, 2, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(40, 2, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 3),
+(41, 2, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 4);
 
 -- --------------------------------------------------------
 
@@ -144,9 +164,9 @@ CREATE TABLE `data_types` (
   `policy_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `controller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `generate_permissions` tinyint(1) NOT NULL DEFAULT '0',
-  `server_side` tinyint(4) NOT NULL DEFAULT '0',
-  `details` text COLLATE utf8mb4_unicode_ci,
+  `generate_permissions` tinyint(1) NOT NULL DEFAULT 0,
+  `server_side` tinyint(4) NOT NULL DEFAULT 0,
+  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -156,12 +176,35 @@ CREATE TABLE `data_types` (
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', '', 1, 0, NULL, '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-06-15 10:06:07', '2020-06-15 10:06:07');
+(2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-08-17 09:43:10', '2020-08-17 10:23:14'),
+(3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-08-17 09:43:10', '2020-08-17 10:05:44'),
+(4, 'books', 'books', 'Book', 'Books', 'voyager-book', 'App\\Book', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-08-17 10:00:10', '2020-08-18 01:02:53'),
+(5, 'exchanges', 'exchanges', 'Exchange', 'Exchanges', 'voyager-size-small', 'App\\Exchange', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-08-17 10:01:08', '2020-08-17 10:01:08'),
+(6, 'users', 'users', 'User', 'Users', 'voyager-person', 'App\\User', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-08-17 10:03:25', '2020-08-17 11:16:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exchanges`
+--
+
+CREATE TABLE `exchanges` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `book_wanted` int(11) NOT NULL,
+  `book_offered` int(11) NOT NULL,
+  `requested_by` int(11) NOT NULL,
+  `requested_to` int(11) NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `exchanges`
+--
+
+INSERT INTO `exchanges` (`id`, `book_wanted`, `book_offered`, `requested_by`, `requested_to`, `status`, `created_at`, `updated_at`) VALUES
+(2, 7, 3, 2, 6, 'requested', '2020-08-18 01:18:48', '2020-08-18 01:18:48');
 
 -- --------------------------------------------------------
 
@@ -175,7 +218,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -196,7 +239,7 @@ CREATE TABLE `menus` (
 --
 
 INSERT INTO `menus` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '2020-06-15 10:06:06', '2020-06-15 10:06:06');
+(1, 'admin', '2020-08-17 09:43:10', '2020-08-17 09:43:10');
 
 -- --------------------------------------------------------
 
@@ -217,7 +260,7 @@ CREATE TABLE `menu_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `route` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parameters` text COLLATE utf8mb4_unicode_ci
+  `parameters` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -225,20 +268,19 @@ CREATE TABLE `menu_items` (
 --
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
-(1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2020-06-15 10:06:06', '2020-06-15 10:06:06', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 5, '2020-06-15 10:06:06', '2020-06-15 10:06:06', 'voyager.media.index', NULL),
-(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 3, '2020-06-15 10:06:06', '2020-06-15 10:06:06', 'voyager.users.index', NULL),
-(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 2, '2020-06-15 10:06:06', '2020-06-15 10:06:06', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2020-06-15 10:06:06', '2020-06-15 10:06:06', NULL, NULL),
-(6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 10, '2020-06-15 10:06:06', '2020-06-15 10:06:06', 'voyager.menus.index', NULL),
-(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 11, '2020-06-15 10:06:06', '2020-06-15 10:06:06', 'voyager.database.index', NULL),
-(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 12, '2020-06-15 10:06:06', '2020-06-15 10:06:06', 'voyager.compass.index', NULL),
-(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 13, '2020-06-15 10:06:06', '2020-06-15 10:06:06', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 14, '2020-06-15 10:06:06', '2020-06-15 10:06:06', 'voyager.settings.index', NULL),
-(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 8, '2020-06-15 10:06:07', '2020-06-15 10:06:07', 'voyager.categories.index', NULL),
-(12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 6, '2020-06-15 10:06:07', '2020-06-15 10:06:07', 'voyager.posts.index', NULL),
-(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 7, '2020-06-15 10:06:07', '2020-06-15 10:06:07', 'voyager.pages.index', NULL),
-(14, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 13, '2020-06-15 10:06:07', '2020-06-15 10:06:07', 'voyager.hooks', NULL);
+(1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2020-08-17 09:43:10', '2020-08-17 09:43:10', 'voyager.dashboard', NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 6, '2020-08-17 09:43:10', '2020-08-17 10:16:05', 'voyager.media.index', NULL),
+(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 2, '2020-08-17 09:43:10', '2020-08-17 10:16:10', 'voyager.roles.index', NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 7, '2020-08-17 09:43:10', '2020-08-17 10:15:59', NULL, NULL),
+(6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2020-08-17 09:43:10', '2020-08-17 10:04:31', 'voyager.menus.index', NULL),
+(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2020-08-17 09:43:10', '2020-08-17 10:04:36', 'voyager.database.index', NULL),
+(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2020-08-17 09:43:10', '2020-08-17 10:04:36', 'voyager.compass.index', NULL),
+(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2020-08-17 09:43:10', '2020-08-17 10:04:36', 'voyager.bread.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 8, '2020-08-17 09:43:10', '2020-08-17 10:15:59', 'voyager.settings.index', NULL),
+(11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2020-08-17 09:43:10', '2020-08-17 10:04:36', 'voyager.hooks', NULL),
+(12, 1, 'Books', '', '_self', 'voyager-book', '#000000', NULL, 4, '2020-08-17 10:00:10', '2020-08-17 10:16:26', 'voyager.books.index', 'null'),
+(13, 1, 'Exchanges', '', '_self', 'voyager-resize-small', '#000000', NULL, 5, '2020-08-17 10:01:08', '2020-08-17 10:21:58', 'voyager.exchanges.index', 'null'),
+(14, 1, 'Users', '', '_self', 'voyager-person', '#000000', NULL, 3, '2020-08-17 10:03:25', '2020-08-17 10:16:10', 'voyager.users.index', 'null');
 
 -- --------------------------------------------------------
 
@@ -260,34 +302,36 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2016_01_01_000000_add_voyager_user_fields', 1),
 (3, '2016_01_01_000000_create_data_types_table', 1),
-(4, '2016_05_19_173453_create_menu_table', 1),
-(5, '2016_10_21_190000_create_roles_table', 1),
-(6, '2016_10_21_190000_create_settings_table', 1),
-(7, '2016_11_30_135954_create_permission_table', 1),
-(8, '2016_11_30_141208_create_permission_role_table', 1),
-(9, '2016_12_26_201236_data_types__add__server_side', 1),
-(10, '2017_01_13_000000_add_route_to_menu_items_table', 1),
-(11, '2017_01_14_005015_create_translations_table', 1),
-(12, '2017_01_15_000000_make_table_name_nullable_in_permissions_table', 1),
-(13, '2017_03_06_000000_add_controller_to_data_types_table', 1),
-(14, '2017_04_21_000000_add_order_to_data_rows_table', 1),
-(15, '2017_07_05_210000_add_policyname_to_data_types_table', 1),
-(16, '2017_08_05_000000_add_group_to_settings_table', 1),
-(17, '2017_11_26_013050_add_user_role_relationship', 1),
-(18, '2017_11_26_015000_create_user_roles_table', 1),
-(19, '2018_03_11_000000_add_user_settings', 1),
-(20, '2018_03_14_000000_add_details_to_data_types_table', 1),
-(21, '2018_03_16_000000_make_settings_value_nullable', 1),
-(22, '2019_08_19_000000_create_failed_jobs_table', 1),
-(23, '2016_01_01_000000_create_pages_table', 2),
-(24, '2016_01_01_000000_create_posts_table', 2),
-(25, '2016_02_15_204651_create_categories_table', 2),
-(26, '2017_04_11_000000_alter_post_nullable_fields_table', 2),
-(27, '2016_06_01_000001_create_oauth_auth_codes_table', 3),
-(28, '2016_06_01_000002_create_oauth_access_tokens_table', 3),
-(29, '2016_06_01_000003_create_oauth_refresh_tokens_table', 3),
-(30, '2016_06_01_000004_create_oauth_clients_table', 3),
-(31, '2016_06_01_000005_create_oauth_personal_access_clients_table', 3);
+(4, '2016_01_01_000000_create_pages_table', 1),
+(5, '2016_01_01_000000_create_posts_table', 1),
+(6, '2016_02_15_204651_create_categories_table', 1),
+(7, '2016_05_19_173453_create_menu_table', 1),
+(8, '2016_06_01_000001_create_oauth_auth_codes_table', 1),
+(9, '2016_06_01_000002_create_oauth_access_tokens_table', 1),
+(10, '2016_06_01_000003_create_oauth_refresh_tokens_table', 1),
+(11, '2016_06_01_000004_create_oauth_clients_table', 1),
+(12, '2016_06_01_000005_create_oauth_personal_access_clients_table', 1),
+(13, '2016_10_21_190000_create_roles_table', 1),
+(14, '2016_10_21_190000_create_settings_table', 1),
+(15, '2016_11_30_135954_create_permission_table', 1),
+(16, '2016_11_30_141208_create_permission_role_table', 1),
+(17, '2016_12_26_201236_data_types__add__server_side', 1),
+(18, '2017_01_13_000000_add_route_to_menu_items_table', 1),
+(19, '2017_01_14_005015_create_translations_table', 1),
+(20, '2017_01_15_000000_make_table_name_nullable_in_permissions_table', 1),
+(21, '2017_03_06_000000_add_controller_to_data_types_table', 1),
+(22, '2017_04_11_000000_alter_post_nullable_fields_table', 1),
+(23, '2017_04_21_000000_add_order_to_data_rows_table', 1),
+(24, '2017_07_05_210000_add_policyname_to_data_types_table', 1),
+(25, '2017_08_05_000000_add_group_to_settings_table', 1),
+(26, '2017_11_26_013050_add_user_role_relationship', 1),
+(27, '2017_11_26_015000_create_user_roles_table', 1),
+(28, '2018_03_11_000000_add_user_settings', 1),
+(29, '2018_03_14_000000_add_details_to_data_types_table', 1),
+(30, '2018_03_16_000000_make_settings_value_nullable', 1),
+(31, '2019_08_19_000000_create_failed_jobs_table', 1),
+(32, '2020_06_28_064859_create_books_table', 1),
+(33, '2020_07_10_031739_create_exchanges_table', 1);
 
 -- --------------------------------------------------------
 
@@ -300,7 +344,7 @@ CREATE TABLE `oauth_access_tokens` (
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `client_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `scopes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `revoked` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -325,7 +369,7 @@ CREATE TABLE `oauth_auth_codes` (
   `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `client_id` bigint(20) UNSIGNED NOT NULL,
-  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `scopes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `revoked` tinyint(1) NOT NULL,
   `expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -401,12 +445,12 @@ CREATE TABLE `pages` (
   `id` int(10) UNSIGNED NOT NULL,
   `author_id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `excerpt` text COLLATE utf8mb4_unicode_ci,
-  `body` text COLLATE utf8mb4_unicode_ci,
+  `excerpt` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_description` text COLLATE utf8mb4_unicode_ci,
-  `meta_keywords` text COLLATE utf8mb4_unicode_ci,
+  `meta_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` enum('ACTIVE','INACTIVE') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'INACTIVE',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -438,47 +482,42 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`) VALUES
-(1, 'browse_admin', NULL, '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(2, 'browse_bread', NULL, '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(3, 'browse_database', NULL, '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(4, 'browse_media', NULL, '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(5, 'browse_compass', NULL, '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(6, 'browse_menus', 'menus', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(7, 'read_menus', 'menus', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(8, 'edit_menus', 'menus', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(9, 'add_menus', 'menus', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(10, 'delete_menus', 'menus', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(11, 'browse_roles', 'roles', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(12, 'read_roles', 'roles', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(13, 'edit_roles', 'roles', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(14, 'add_roles', 'roles', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(15, 'delete_roles', 'roles', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(16, 'browse_users', 'users', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(17, 'read_users', 'users', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(18, 'edit_users', 'users', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(19, 'add_users', 'users', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(20, 'delete_users', 'users', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(21, 'browse_settings', 'settings', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(22, 'read_settings', 'settings', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(23, 'edit_settings', 'settings', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(24, 'add_settings', 'settings', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(25, 'delete_settings', 'settings', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(26, 'browse_categories', 'categories', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(27, 'read_categories', 'categories', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(28, 'edit_categories', 'categories', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(29, 'add_categories', 'categories', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(30, 'delete_categories', 'categories', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(31, 'browse_posts', 'posts', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(32, 'read_posts', 'posts', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(33, 'edit_posts', 'posts', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(34, 'add_posts', 'posts', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(35, 'delete_posts', 'posts', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(36, 'browse_pages', 'pages', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(37, 'read_pages', 'pages', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(38, 'edit_pages', 'pages', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(39, 'add_pages', 'pages', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(40, 'delete_pages', 'pages', '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(41, 'browse_hooks', NULL, '2020-06-15 10:06:07', '2020-06-15 10:06:07');
+(1, 'browse_admin', NULL, '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(2, 'browse_bread', NULL, '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(3, 'browse_database', NULL, '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(4, 'browse_media', NULL, '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(5, 'browse_compass', NULL, '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(6, 'browse_menus', 'menus', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(7, 'read_menus', 'menus', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(8, 'edit_menus', 'menus', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(9, 'add_menus', 'menus', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(10, 'delete_menus', 'menus', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(11, 'browse_roles', 'roles', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(12, 'read_roles', 'roles', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(13, 'edit_roles', 'roles', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(14, 'add_roles', 'roles', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(15, 'delete_roles', 'roles', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(21, 'browse_settings', 'settings', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(22, 'read_settings', 'settings', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(23, 'edit_settings', 'settings', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(24, 'add_settings', 'settings', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(25, 'delete_settings', 'settings', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(26, 'browse_hooks', NULL, '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(27, 'browse_books', 'books', '2020-08-17 10:00:10', '2020-08-17 10:00:10'),
+(28, 'read_books', 'books', '2020-08-17 10:00:10', '2020-08-17 10:00:10'),
+(29, 'edit_books', 'books', '2020-08-17 10:00:10', '2020-08-17 10:00:10'),
+(30, 'add_books', 'books', '2020-08-17 10:00:10', '2020-08-17 10:00:10'),
+(31, 'delete_books', 'books', '2020-08-17 10:00:10', '2020-08-17 10:00:10'),
+(32, 'browse_exchanges', 'exchanges', '2020-08-17 10:01:08', '2020-08-17 10:01:08'),
+(33, 'read_exchanges', 'exchanges', '2020-08-17 10:01:08', '2020-08-17 10:01:08'),
+(34, 'edit_exchanges', 'exchanges', '2020-08-17 10:01:08', '2020-08-17 10:01:08'),
+(35, 'add_exchanges', 'exchanges', '2020-08-17 10:01:08', '2020-08-17 10:01:08'),
+(36, 'delete_exchanges', 'exchanges', '2020-08-17 10:01:08', '2020-08-17 10:01:08'),
+(37, 'browse_users', 'users', '2020-08-17 10:03:25', '2020-08-17 10:03:25'),
+(38, 'read_users', 'users', '2020-08-17 10:03:25', '2020-08-17 10:03:25'),
+(39, 'edit_users', 'users', '2020-08-17 10:03:25', '2020-08-17 10:03:25'),
+(40, 'add_users', 'users', '2020-08-17 10:03:25', '2020-08-17 10:03:25'),
+(41, 'delete_users', 'users', '2020-08-17 10:03:25', '2020-08-17 10:03:25');
 
 -- --------------------------------------------------------
 
@@ -511,17 +550,11 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (13, 1),
 (14, 1),
 (15, 1),
-(16, 1),
-(17, 1),
-(18, 1),
-(19, 1),
-(20, 1),
 (21, 1),
 (22, 1),
 (23, 1),
 (24, 1),
 (25, 1),
-(26, 1),
 (27, 1),
 (28, 1),
 (29, 1),
@@ -535,7 +568,8 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (37, 1),
 (38, 1),
 (39, 1),
-(40, 1);
+(40, 1),
+(41, 1);
 
 -- --------------------------------------------------------
 
@@ -549,14 +583,14 @@ CREATE TABLE `posts` (
   `category_id` int(11) DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `seo_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `excerpt` text COLLATE utf8mb4_unicode_ci,
+  `excerpt` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_description` text COLLATE utf8mb4_unicode_ci,
-  `meta_keywords` text COLLATE utf8mb4_unicode_ci,
+  `meta_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` enum('PUBLISHED','DRAFT','PENDING') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DRAFT',
-  `featured` tinyint(1) NOT NULL DEFAULT '0',
+  `featured` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -590,8 +624,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', '2020-06-15 10:06:06', '2020-06-15 10:06:06'),
-(2, 'user', 'Normal User', '2020-06-15 10:06:06', '2020-06-15 10:06:06');
+(1, 'admin', 'Administrator', '2020-08-17 09:43:10', '2020-08-17 09:43:10'),
+(2, 'user', 'Normal User', '2020-08-17 09:43:10', '2020-08-17 09:43:10');
 
 -- --------------------------------------------------------
 
@@ -603,10 +637,10 @@ CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci,
-  `details` text COLLATE utf8mb4_unicode_ci,
+  `value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order` int(11) NOT NULL DEFAULT '1',
+  `order` int(11) NOT NULL DEFAULT 1,
   `group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -693,22 +727,26 @@ CREATE TABLE `users` (
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `settings` text COLLATE utf8mb4_unicode_ci,
+  `settings` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `api_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$dpvqM5fZKfLFfhz0Hpn4puMIz1PfR4V00MiH1y8jOeE8Gba3H9vEi', 'kdRUhFAfQf81cNtP2wAGlLYRY0bqUH4ftL4ktO9CfhaG6WUzhFQiOgdjoC6W', NULL, '2020-06-15 10:06:07', '2020-06-15 10:06:07'),
-(2, 2, 'Saroj', 'sarojpathak430@gmail.com', 'users/default.png', NULL, '$2y$10$NHCVVBYCIw5tfltxXyjcdeyP1pw7RAS72.ryotSyhcdmvamYfImLm', NULL, '{\"locale\":\"en\"}', '2020-06-16 23:27:45', '2020-06-16 23:27:45'),
-(3, 2, 'test', 'test@test.com', 'users/default.png', NULL, '$2y$10$vfYPNHmmLpx4NFYqyMdp9uKCo1tG6B2nINfR5UbEEzH79/O2YRbVe', NULL, '{\"locale\":\"en\"}', '2020-06-16 23:35:08', '2020-06-16 23:35:08'),
-(10, 2, 'saroj', 'saroj@saroj.com', 'users/default.png', NULL, '$2y$10$Qu0DOa1gFNzRTP4/uYHS3.tV0JLdmT4P.7W.A.US3eyiE3s.kCXEG', NULL, NULL, '2020-06-18 01:40:25', '2020-06-18 01:40:25'),
-(12, 2, 'saroj', 's@s.com', 'users/default.png', NULL, '$2y$10$HJGvdyzuY21AJqnHXF0QbOix0UuDbNSxHQXxgOJCXqs7j803gIXmu', NULL, NULL, '2020-06-18 02:41:03', '2020-06-18 02:41:03');
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `phone`, `address`, `remember_token`, `settings`, `created_at`, `updated_at`, `api_token`) VALUES
+(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$KkQcAfQd1u/Etc5DOQ5Hhuo/YzhePxdIEHpurvDHClR0Y3N7CnwMW', '9849940443', 'Admin City', NULL, NULL, '2020-08-17 09:36:17', '2020-08-17 09:36:17', NULL),
+(2, 2, 'Biaksh Bhattarai', 'bhattaraibikash55@gmail.com', 'users/August2020/1597221080-20200218_184511.jpg', NULL, '$2y$10$.51X3hcEIa3DlIOKHDKtdOn8ln4QNc5U3YMrHppmiebTsE8XhREmO', '9849940440', 'Koteshwor, Ktm', NULL, NULL, '2020-08-12 02:13:41', '2020-08-18 01:30:23', NULL),
+(5, 2, 'Anish Dhakal', 'anish@gmail.com', 'users/default.png', NULL, '$2y$10$nUe3yLhMbC415Wg8bZGF2uftcBOY3NgLvEeb6ffLWezKB070yAo.K', '9845854545', 'Balaju, Ktm', NULL, NULL, '2020-08-17 11:09:02', '2020-08-17 11:09:02', NULL),
+(6, 2, 'Pasang Sherpa', 'pasang@gmail.com', 'users/default.png', NULL, '$2y$10$7lXnxKtheukFnxchgexGj.MRnnBiMeptkjx7sbaW3Y9h46eR7oaw.', '98545458521', 'Jorpati, Ktm', NULL, NULL, '2020-08-17 11:10:40', '2020-08-17 11:10:40', NULL),
+(7, 2, 'Binod Rana', 'binod@gmail.com', 'users/default.png', NULL, '$2y$10$BS9P4OHwIfxNAhklO70lQ.uV40zYmTga3x/htodfUt4A0H.fM6JnG', '9854541256', 'Dillibazar, Ktm', NULL, NULL, '2020-08-17 11:11:36', '2020-08-17 11:11:36', NULL),
+(8, 2, 'Saroj Pathak', 'saroj@gmail.com', 'users/default.png', NULL, '$2y$10$I7h7.XkYdc6GxbFR0I4XJ.qgFZEHglRCO4xoM/YOfQmCmMR83/P8y', '98545458666', 'Dhading', NULL, NULL, '2020-08-17 11:12:38', '2020-08-17 11:12:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -722,8 +760,21 @@ CREATE TABLE `user_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `user_roles`
+--
+
+INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
+(1, 1);
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `books`
+--
+ALTER TABLE `books`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `categories`
@@ -747,6 +798,12 @@ ALTER TABLE `data_types`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `data_types_name_unique` (`name`),
   ADD UNIQUE KEY `data_types_slug_unique` (`slug`);
+
+--
+-- Indexes for table `exchanges`
+--
+ALTER TABLE `exchanges`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -863,6 +920,7 @@ ALTER TABLE `translations`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD UNIQUE KEY `users_api_token_unique` (`api_token`),
   ADD KEY `users_role_id_foreign` (`role_id`);
 
 --
@@ -878,85 +936,113 @@ ALTER TABLE `user_roles`
 --
 
 --
+-- AUTO_INCREMENT for table `books`
+--
+ALTER TABLE `books`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `exchanges`
+--
+ALTER TABLE `exchanges`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
 --
 -- AUTO_INCREMENT for table `oauth_clients`
 --
 ALTER TABLE `oauth_clients`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `oauth_personal_access_clients`
 --
 ALTER TABLE `oauth_personal_access_clients`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- Constraints for dumped tables
 --
@@ -998,6 +1084,7 @@ ALTER TABLE `users`
 ALTER TABLE `user_roles`
   ADD CONSTRAINT `user_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_roles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

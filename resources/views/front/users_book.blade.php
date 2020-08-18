@@ -16,7 +16,7 @@
 </header>
 
 <div class="mx-2">
-    <table class="table table-dark table-responsive">
+    <table class="table table-dark d-table table-responsive">
         <thead class="bg-secondary">
             <tr>
                 <th scope="col">#</th>
@@ -54,9 +54,16 @@
                     </form>
                 </td>
             </tr>
-
             @endforeach
         </tbody>
     </table>
+    @if($usersBook->count() == 0)
+    <div class="text-center">
+    <h5 class="text-center text-monospace">You have not shared a book yet!</h5>
+    <a href="{{route('addbook')}}" class="btn btn-primary mt-4 border-light" type="link">
+        Share Your Book
+    </a>
+    </div>
+    @endif
 </div>
 @endsection

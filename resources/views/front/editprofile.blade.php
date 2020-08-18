@@ -18,9 +18,29 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 offset-md-2">
+        
             <form action="{{route('editUserInfo')}}" method="POST" encType="multipart/form-data">
                 @csrf
-                <div class="control-group">
+                <div class="row">
+                    <div class="col-md-6 my-4">
+                        <div class="control-group">
+                            <div class="profile-img">
+                            @if($user->avatar == 'users/default.png')
+                            <img style="height: 200px; width: 200px;" src="{{asset('assets/img/defaultUser.png')}}"
+                                alt="User Image" />
+                            @else
+                            <img style="height: 200px; width: 200px;" src={{asset('storage/'.($user->avatar))}}
+                                alt="User Image" />
+                            @endif
+                        </div>
+                        <div class="form-group floating-label-form-group controls">
+                        <label>Image:</label>
+                        <input type="file" name="image" placeholder="Image" class="form-control text-center">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-4">
+            <div class="control-group">
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -46,7 +66,6 @@
                         </h6>
                         <input type="hidden" name="email" value="{{$user->email}}" />
                     </div>
-                    <hr>
                 </div>
 
 
@@ -65,23 +84,10 @@
                     </div>
                 </div>
 
-                <div class="control-group">
-                    <div class="profile-img">
-                        @if($user->avatar == 'users/default.png')
-                        <img style="height: 200px; width: 200px;" src="{{asset('assets/img/defaultUser.png')}}"
-                            alt="User Image" />
-                        @else
-                        <img style="height: 200px; width: 200px;" src={{asset('storage/'.($user->avatar))}}
-                            alt="User Image" />
-                        @endif
-                    </div>
-                    <div class="form-group floating-label-form-group controls">
-                        <label>Image:</label>
-                        <input type="file" name="image" placeholder="Image" class="form-control text-center">
-                    </div>
-                </div>
                 <input type="hidden" name="id" value="{{$user->id}}">
-
+            </div>
+            
+                </div>
                 <div class="form-group my-4 text-center">
                     <button type="submit" class="btn btn-primary btn-block">update</button>
                 </div>
