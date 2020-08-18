@@ -42,6 +42,7 @@ class BookController extends ApiController
         $book->author=$request->author;
         $book->description=$request->description;
         $book->condition=$request->condition;
+        $book->status = 'available';
 //        $user = Auth::user();
 //        print_r($user); exit;
         $book->belongs_to=$request->belongs_to;
@@ -98,7 +99,6 @@ class BookController extends ApiController
             $file->move($destinationPath, time() . "-" . $file->getClientOriginalName());
             $book->image = 'books/' . date('F') . date('Y') . '/' . time() . "-" . $file->getClientOriginalName();
 
-            print_r($book->image); exit;
         }
         $result = $this->dao->update($data,$id);
         if($result){
