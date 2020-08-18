@@ -742,7 +742,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `phone`, `address`, `remember_token`, `settings`, `created_at`, `updated_at`, `api_token`) VALUES
 (1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$KkQcAfQd1u/Etc5DOQ5Hhuo/YzhePxdIEHpurvDHClR0Y3N7CnwMW', '9849940443', 'Admin City', NULL, NULL, '2020-08-17 09:36:17', '2020-08-17 09:36:17', NULL),
-(2, 2, 'Biaksh Bhattarai', 'bhattaraibikash55@gmail.com', 'users/August2020/1597221080-20200218_184511.jpg', NULL, '$2y$10$.51X3hcEIa3DlIOKHDKtdOn8ln4QNc5U3YMrHppmiebTsE8XhREmO', '9849940440', 'Koteshwor, Ktm', NULL, NULL, '2020-08-12 02:13:41', '2020-08-18 01:30:23', NULL),
+(2, 2, 'Biaksh Bhattarai', 'bhattaraibikash55@gmail.com', 'users/default.png', NULL, '$2y$10$.51X3hcEIa3DlIOKHDKtdOn8ln4QNc5U3YMrHppmiebTsE8XhREmO', '9849940440', 'Koteshwor, Ktm', NULL, NULL, '2020-08-12 02:13:41', '2020-08-18 01:30:23', NULL),
 (5, 2, 'Anish Dhakal', 'anish@gmail.com', 'users/default.png', NULL, '$2y$10$nUe3yLhMbC415Wg8bZGF2uftcBOY3NgLvEeb6ffLWezKB070yAo.K', '9845854545', 'Balaju, Ktm', NULL, NULL, '2020-08-17 11:09:02', '2020-08-17 11:09:02', NULL),
 (6, 2, 'Pasang Sherpa', 'pasang@gmail.com', 'users/default.png', NULL, '$2y$10$7lXnxKtheukFnxchgexGj.MRnnBiMeptkjx7sbaW3Y9h46eR7oaw.', '98545458521', 'Jorpati, Ktm', NULL, NULL, '2020-08-17 11:10:40', '2020-08-17 11:10:40', NULL),
 (7, 2, 'Binod Rana', 'binod@gmail.com', 'users/default.png', NULL, '$2y$10$BS9P4OHwIfxNAhklO70lQ.uV40zYmTga3x/htodfUt4A0H.fM6JnG', '9854541256', 'Dillibazar, Ktm', NULL, NULL, '2020-08-17 11:11:36', '2020-08-17 11:11:36', NULL),
